@@ -16,7 +16,7 @@ Segue um exemplo do processo seletivo para o primeiro semestre de 2020, conforme
 
 
 
-![image-20200823234101628](/home/renan/.config/Typora/typora-user-images/image-20200823234101628.png)
+![table](https://github.com/Piton-Fatec/cps-geti/blob/master/imgs/table.png)
 
 
 
@@ -66,13 +66,13 @@ https://github.com/SEUUSUARIO/cps-geti/fork
 
 Ou clique no botão `fork` no canto superior direito da página do projeto:
 
-![fork-button](/home/renan/.config/Typora/typora-user-images/image-20200823234755310.png)
+![fork-button](https://github.com/Piton-Fatec/cps-geti/blob/master/imgs/fork-button.png)
 
 
 
 Abra o seu terminal, escolha um local e clone o projeto localmente por meio do link HTTPS ou SSH do seu repositório forkado:
 
-![image-20200823234949266](/home/renan/.config/Typora/typora-user-images/image-20200823234949266.png)
+![clone](https://github.com/Piton-Fatec/cps-geti/blob/master/imgs/clone.png)
 
 ```bash
 git clone https://github.com/SEUUSUARIO/cps-geti.git
@@ -100,8 +100,8 @@ O comando `add *` do git adiciona todas as modificações feitas no repositório
 
 Após realizar esses passos, acesse a página github do repositório forkado. Nessa paǵina, terá uma mensagem solicitando a revisão da alteração enviada para realizar o *pull request* para a branch `master` do repositório forkado:
 
-![image-20200824000410625](/home/renan/.config/Typora/typora-user-images/image-20200824000410625.png)
+![compare-pull-requests](https://github.com/Piton-Fatec/cps-geti/blob/master/imgs/compare-pull-request.png)
 
 Revise a alteração e insira comentário caso necessário e finalmente crie o *pull request*:
 
-![image-20200824000516704](/home/renan/.config/Typora/typora-user-images/image-20200824000516704.png)
+![create-pull-request](https://github.com/Piton-Fatec/cps-geti/blob/master/imgs/create-pull-request.png)
