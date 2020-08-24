@@ -96,12 +96,12 @@ git commit -am 'descrição breve das alterações realizadas'
 git push origin devel
 ```
 
-O comando `add *` do git adiciona todas as modificações feitas no repositório para o INDEX (área temporária). O `commit` confirma essas modificações e essas modificações são inserida no HEAD o qual aponta o último commit realizado no repositório. Finalmente, o comando `push` envia as alterações para o repositório remoto (github) especificamente para o `branch` especificado (devel).
+O comando `add *` do git adiciona todas as modificações feitas no repositório para o INDEX (área temporária). O `commit` confirma essas modificações e, então, são inseridas no HEAD o qual aponta o último commit realizado no repositório. Finalmente, o comando `push` envia as alterações para o repositório remoto (github) especificamente para o `branch` especificado (devel).
 
 Após realizar esses passos, acesse a página github do repositório forkado. Nessa paǵina, terá uma mensagem solicitando a revisão da alteração enviada para realizar o *pull request* para a branch `master` do repositório forkado:
 
 ![compare-pull-requests](https://github.com/Piton-Fatec/cps-geti/blob/master/imgs/compare-pull-request.png)
 
-Revise a alteração e insira comentário caso necessário e finalmente crie o *pull request*:
+Revise a alteração e insira comentários caso necessário e finalmente crie o *pull request*:
 
 ![create-pull-request](https://github.com/Piton-Fatec/cps-geti/blob/master/imgs/create-pull-request.png)
