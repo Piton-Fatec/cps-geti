@@ -1,4 +1,4 @@
-Projeto integrado CPS-GETI
+# Projeto integrado CPS-GETI
 
 > Projeto integrado das disciplinas Engenharia de Software II e Estruturas de Dados
 
