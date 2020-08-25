@@ -88,3 +88,13 @@ Após realizar esses passos, acesse a página github do repositório forkado. Ne
 Revise a alteração e insira comentários caso necessário e finalmente crie o *pull request*:
 
 ![create-pull-request](https://github.com/Piton-Fatec/cps-geti/blob/master/imgs/create-pull-request.png)
+
+
+## TODO
+
+- [ ] Elicitar os requisitos
+- [ ] Casos de uso
+- [ ] Protótipos
+
+* Marcar horários com a professora para validar os requisitos
+
