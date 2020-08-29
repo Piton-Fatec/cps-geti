@@ -21,5 +21,5 @@
 |RNF03|Usabilidade|O Sistema deve ser disponibilizado apenas para plataforma Desktop|
 |RNF04|Restrição|O acesso integral as funcionalidades di sistema devem ser dispostas apenas ao presidente da CPS e ao coordenador do GETI|
 |RNF05|Restrição|Os membros do CRA podem apenas validar documentações (CPF, RG, diploma etc)|
-|RNF06|Restrição|Os membros da CPs podem apenas avaliar o currículo do candidato|
+|RNF06|Restrição|Os membros da CPS podem apenas avaliar o currículo do candidato|
 |RNF07|Armazenamento dos editais|Todos os editais devem ser armazenados para que o presidente e o coordenador do GETI possam consuntá-los|
