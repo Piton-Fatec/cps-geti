@@ -13,13 +13,13 @@
 
 
 ## Requisitos não funcionais
+
 | cod | Nome | Descrição |
 | --- | ---- | --------- |
-|RNF01|Armazenamento dos editais|Todos os editais devem ser armazenados para que o presidente e o coordenador do GETI possam consuntá-los|
-|RNF02|Restrição de funcionalidades aos membros do CPS|O presidente do CPS e o coordenador do GETI terão acesso a todas as funcionalidades do sistema. Membros do CRA poderão apenas validar os documentos do candidato (CPF, RG, diploma). Membros do CPS terão acesso, além dos dados dos candidatos, ao currículo do mesmo|
-|RNF03|Restrição de acesso aos candidatos|Os candidatos não terão acesso ao *status* de sua candidatura após um membro do CPS validar os seus documentos|
-|RNF04|Restrição de inscrição fora do prazo|Após o período de inscrições do edital, não será permitido novas candidaturas, assim como o candidato que não entregou os documentos solicitados não poderá realizar esse procedimento após o prazo|
-|RNF05|Funcionamento multiplataforma|O sistema deve funcionar em qualquer sistema operacional|
-|RNF06|Usabilidade|
-
-Quem efetuará o upload dos arquivos do candidato?
+|RNF01|Linguagem de programação|O sistema deve ser elaborado utilizando apenas linguagem de programação Java|
+|RNF02|Método de desenvolvimento|O sistema deve ser elaborado utilizando técnicas de OO (Orientação a objeto)|
+|RNF03|Usabilidade|O Sistema deve ser disponibilizado apenas para plataforma Desktop|
+|RNF04|Restrição|O acesso integral as funcionalidades di sistema devem ser dispostas apenas ao presidente da CPS e ao coordenador do GETI|
+|RNF05|Restrição|Os membros do CRA podem apenas validar documentações (CPF, RG, diploma etc)|
+|RNF06|Restrição|Os membros da CPs podem apenas avaliar o currículo do candidato|
+|RNF07|Armazenamento dos editais|Todos os editais devem ser armazenados para que o presidente e o coordenador do GETI possam consuntá-los|
