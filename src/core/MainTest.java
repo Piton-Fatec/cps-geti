@@ -11,6 +11,8 @@ public class MainTest {
 		
 		String msg = mt.helloFatec();
 		
-		System.out.println(msg);
+		System.out.println("teste");
+		
+		
 	}
 }
