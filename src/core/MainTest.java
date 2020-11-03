@@ -11,8 +11,12 @@ public class MainTest {
 		
 		String msg = mt.helloFatec();
 		
+
 		System.out.println("teste");
 		
+		
+
+		System.out.println(msg);
 		
 	}
 }
