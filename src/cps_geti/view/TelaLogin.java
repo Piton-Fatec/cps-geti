@@ -1,6 +1,5 @@
 package cps_geti.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,16 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Button;
-import javax.swing.UIManager;
 import java.awt.Font;
-import java.awt.Image;
 
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
-import java.awt.SystemColor;
 import javax.swing.JPasswordField;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,6 +20,10 @@ import java.awt.event.MouseMotionAdapter;
 
 public class TelaLogin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
