@@ -1,5 +1,4 @@
-package cps_geti.lista_duplamente_encadeada;
-import cps_geti.candidato.Candidato;
+package cps_geti.model;
 
 public class ListaCandidato {
 

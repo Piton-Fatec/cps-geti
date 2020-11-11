@@ -1,4 +1,4 @@
-package cps_geti.candidato;
+package cps_geti.model;
 
 public class Candidato {
 	
