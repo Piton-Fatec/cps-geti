@@ -18,8 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
-
-public class TelaLogin extends JFrame {
+public class TelaLogin2 extends JFrame {
 
 	/**
 	 * 
@@ -38,7 +37,7 @@ public class TelaLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaLogin frame = new TelaLogin();
+					TelaLogin2 frame = new TelaLogin2();
 					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -51,7 +50,7 @@ public class TelaLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaLogin() {
+	public TelaLogin2() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 768);
@@ -75,7 +74,7 @@ public class TelaLogin extends JFrame {
 			public void mouseDragged(MouseEvent e) {
 				int x = e.getXOnScreen();
 		        int y = e.getYOnScreen();
-		        TelaLogin.this.setLocation(x - xx, y - xy);  
+		        TelaLogin2.this.setLocation(x - xx, y - xy);  
 			}
 		});
 		panel.setBackground(Color.DARK_GRAY);
@@ -84,7 +83,7 @@ public class TelaLogin extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaLogin.class.getResource("/cps_geti/view/imgs/new-people.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(TelaLogin2.class.getResource("/cps_geti/view/imgs/new-people.jpg")));
 		lblNewLabel.setBounds(-152, -214, 603, 1187);
 		panel.add(lblNewLabel);
 		
@@ -105,9 +104,6 @@ public class TelaLogin extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				lblTeste.setText(textField.getText());
-				TelaLogin2 tl2 = new TelaLogin2(); // NOVA TELA EXEMPLO
-				tl2.setUndecorated(true);
-				tl2.setVisible(true);
 			}
 		});
 		button.setForeground(new Color(255, 255, 255));
@@ -148,7 +144,7 @@ public class TelaLogin extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Processo Seletivo -GETI");
 		lblNewLabel_1.setForeground(new Color(47, 79, 79));
 		lblNewLabel_1.setFont(new Font("Open Sans", Font.BOLD, 18));
-		lblNewLabel_1.setIcon(new ImageIcon(TelaLogin.class.getResource("/cps_geti/view/imgs/cps-nimage.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon(TelaLogin2.class.getResource("/cps_geti/view/imgs/cps-nimage.jpg")));
 		lblNewLabel_1.setBounds(519, 81, 411, 159);
 		contentPane.add(lblNewLabel_1);
 		
