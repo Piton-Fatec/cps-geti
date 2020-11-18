@@ -93,12 +93,6 @@ public class TelaLogin extends JFrame {
 		lblNewLabel.setBounds(-152, -214, 603, 1187);
 		panel.add(lblNewLabel);
 		
-		JLabel lblTeste = new JLabel("Teste");
-		lblTeste.setForeground(new Color(47, 79, 79));
-		lblTeste.setFont(new Font("Open Sans", Font.BOLD, 15));
-		lblTeste.setBounds(519, 658, 70, 15);
-		contentPane.add(lblTeste);
-		
 		campoUsuario = new JTextField();
 		campoUsuario.setFont(new Font("Open Sans", Font.PLAIN, 13));
 		campoUsuario.setBounds(519, 344, 411, 42);
@@ -113,15 +107,20 @@ public class TelaLogin extends JFrame {
 		btnEntrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String login = campoUsuario.getText();
-				char[] password = campoSenha.getPassword();
+				GerenciamentoUsuario gu = new GerenciamentoUsuario();
 				
-				lblTeste.setText(campoUsuario.getText());
+				boolean testeCriacao = gu.usuarioValido(campoUsuario.getText(), campoSenha.getPassword());
+				String msg = "Usuário inexistente ou senha inválida.";
 				
-				
-				TelaLogin2 tl2 = new TelaLogin2(); // NOVA TELA EXEMPLO
-				tl2.setUndecorated(true);
-				tl2.setVisible(true);
+				if (!testeCriacao) {
+					Sucesso sucesso = new Sucesso(msg);
+					sucesso.setVisible(true);
+				} else {
+					setVisible(false);
+					TelaLogin2 tl2 = new TelaLogin2(); // NOVA TELA EXEMPLO
+					tl2.setUndecorated(true);
+					tl2.setVisible(true);
+				}
 			}
 		});
 		btnEntrar.setForeground(new Color(255, 255, 255));
@@ -189,7 +188,8 @@ public class TelaLogin extends JFrame {
 				}
 				
 				Sucesso sucesso = new Sucesso(msg);
-				sucesso
+				sucesso.setVisible(true);
+				
 			}
 		});
 		btnCadastrar.setForeground(Color.WHITE);
