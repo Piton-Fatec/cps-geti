@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import cps_geti.bd.GerenciamentoUsuario;
+
 import java.awt.Color;
 import java.awt.Button;
 import java.awt.Font;
@@ -17,6 +20,8 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class TelaLogin extends JFrame {
@@ -26,8 +31,8 @@ public class TelaLogin extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField campoUsuario;
+	private JPasswordField campoSenha;
 	
 	int xx, xy;
 
@@ -94,28 +99,37 @@ public class TelaLogin extends JFrame {
 		lblTeste.setBounds(519, 658, 70, 15);
 		contentPane.add(lblTeste);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Open Sans", Font.PLAIN, 13));
-		textField.setBounds(519, 344, 411, 42);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		campoUsuario = new JTextField();
+		campoUsuario.setFont(new Font("Open Sans", Font.PLAIN, 13));
+		campoUsuario.setBounds(519, 344, 411, 42);
+		contentPane.add(campoUsuario);
+		campoUsuario.setColumns(10);
 		
-		Button button = new Button("Entrar");
-		button.addMouseListener(new MouseAdapter() {
+		campoSenha = new JPasswordField();
+		campoSenha.setBounds(519, 442, 411, 42);
+		contentPane.add(campoSenha);
+		
+		Button btnEntrar = new Button("Entrar");
+		btnEntrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lblTeste.setText(textField.getText());
+				String login = campoUsuario.getText();
+				char[] password = campoSenha.getPassword();
+				
+				lblTeste.setText(campoUsuario.getText());
+				
+				
 				TelaLogin2 tl2 = new TelaLogin2(); // NOVA TELA EXEMPLO
 				tl2.setUndecorated(true);
 				tl2.setVisible(true);
 			}
 		});
-		button.setForeground(new Color(255, 255, 255));
-		button.setFont(new Font("Open Sans", Font.PLAIN, 18));
-		button.setBackground(new Color(70, 130, 180));
-		button.setActionCommand("");
-		button.setBounds(643, 566, 175, 55);
-		contentPane.add(button);
+		btnEntrar.setForeground(new Color(255, 255, 255));
+		btnEntrar.setFont(new Font("Open Sans", Font.PLAIN, 18));
+		btnEntrar.setBackground(new Color(70, 130, 180));
+		btnEntrar.setActionCommand("");
+		btnEntrar.setBounds(537, 540, 175, 55);
+		contentPane.add(btnEntrar);
 	
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 206, 209));
@@ -135,9 +149,7 @@ public class TelaLogin extends JFrame {
 		lblSenha.setBounds(519, 415, 70, 15);
 		contentPane.add(lblSenha);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(519, 442, 411, 42);
-		contentPane.add(passwordField);
+
 		
 		JLabel lblUsurio = new JLabel("Usuário");
 		lblUsurio.setForeground(new Color(47, 79, 79));
@@ -163,6 +175,29 @@ public class TelaLogin extends JFrame {
 		lbl_close.setFont(new Font("Open Sans", Font.BOLD, 23));
 		lbl_close.setBounds(994, 0, 30, 32);
 		contentPane.add(lbl_close);
+		
+		Button btnCadastrar = new Button("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GerenciamentoUsuario gu = new GerenciamentoUsuario();
+				
+				boolean testeCriacao = gu.criarUsuario(campoUsuario.getText(), campoSenha.getPassword());
+				String msg = "Usuário existente. Tente novamente.";
+				
+				if (testeCriacao) {
+					msg = "Usuário criado com sucesso!";
+				}
+				
+				Sucesso sucesso = new Sucesso(msg);
+				sucesso
+			}
+		});
+		btnCadastrar.setForeground(Color.WHITE);
+		btnCadastrar.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btnCadastrar.setBackground(new Color(119, 136, 153));
+		btnCadastrar.setActionCommand("");
+		btnCadastrar.setBounds(757, 540, 175, 55);
+		contentPane.add(btnCadastrar);
 		
 
 	}
