@@ -3,9 +3,17 @@ package cps_geti.model;
 public class MembroCPS {
 
     private int id;
-    private String senha;
     private String nome;
+    private String senha;
     private String posicao;
+    
+    private MembroCPS next;
+    
+    public MembroCPS(String nome, String senha) {
+    	this.nome = nome;
+    	this.senha = senha;
+    }
+    
 
     public int getId() {
         return id;
@@ -37,5 +45,18 @@ public class MembroCPS {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+    public MembroCPS getNext() {
+        return next;
+    }
+
+    public void setNext(MembroCPS membro) {
+        this.next = membro;
+    }
+    
+    @Override
+    public String toString() {
+    	return this.nome + "," + this.senha;
     }
 }

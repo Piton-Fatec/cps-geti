@@ -58,9 +58,7 @@ public class Sucesso extends JFrame {
 		JButton btnOk = new JButton("Ok");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TelaLogin tl = new TelaLogin();
-				tl.setUndecorated(true);
-				tl.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnOk.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
