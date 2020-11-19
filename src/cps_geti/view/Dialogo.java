@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 import java.awt.Button;
 import javax.swing.UIManager;
 
-public class Sucesso extends JFrame {
+public class Dialogo extends JFrame {
 
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class Sucesso extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Sucesso(String msg) {
+	public Dialogo(String msg) {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(650, 300, 450, 300);
@@ -60,7 +60,7 @@ public class Sucesso extends JFrame {
 		JLabel label = new JLabel(msg);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 16));
-		label.setBounds(12, 64, 426, 90);
+		label.setBounds(0, 64, 440, 90);
 		contentPane.add(label);
 		
 		Button button = new Button("Ok");
@@ -71,7 +71,7 @@ public class Sucesso extends JFrame {
 		});
 		button.setBackground(UIManager.getColor("Button.background"));
 		button.setActionCommand("");
-		button.setBounds(161, 167, 110, 39);
+		button.setBounds(170, 161, 110, 39);
 		contentPane.add(button);
 	}
 }

@@ -1,4 +1,4 @@
-package cps_geti.bd;
+package cps_geti.controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -54,6 +54,8 @@ public class GerenciamentoUsuario {
 		if (!membros.contains(login)) {
 			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivo)))) {
 				membros.addBack(new MembroCPS(login, String.valueOf(senha)));
+				
+				
 				MembroCPS membro = membros.removeFront();
 				while (membro != null) {
 					bw.write(membro.toString() + "\n");
@@ -61,6 +63,8 @@ public class GerenciamentoUsuario {
 				}
 				bw.flush();
 				bw.close();
+				
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
