@@ -1,16 +1,20 @@
 package cps_geti.view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.Button;
+import javax.swing.UIManager;
 
 public class Sucesso extends JFrame {
 
@@ -19,23 +23,8 @@ public class Sucesso extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Sucesso frame = new Sucesso(new String("message window"));
-					frame.setUndecorated(true);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	int xx, xy;
 
 	/**
 	 * Create the frame.
@@ -43,26 +32,46 @@ public class Sucesso extends JFrame {
 	public Sucesso(String msg) {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(650, 300, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		contentPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xx = e.getX();
+				xy = e.getY();
+			}
+		});
+		
+		
+		contentPane.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int x = e.getXOnScreen();
+		        int y = e.getYOnScreen();
+		        setLocation(x - xx, y - xy);  
+			}
+		});
+		
 		JLabel label = new JLabel(msg);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 16));
-		label.setBounds(12, 64, 416, 90);
+		label.setBounds(12, 64, 426, 90);
 		contentPane.add(label);
 		
-		JButton btnOk = new JButton("Ok");
-		btnOk.addActionListener(new ActionListener() {
+		Button button = new Button("Ok");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 			}
 		});
-		btnOk.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
-		btnOk.setBounds(158, 183, 117, 25);
-		contentPane.add(btnOk);
+		button.setBackground(UIManager.getColor("Button.background"));
+		button.setActionCommand("");
+		button.setBounds(161, 167, 110, 39);
+		contentPane.add(button);
 	}
 }
