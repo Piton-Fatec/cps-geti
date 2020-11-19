@@ -1,6 +1,6 @@
 package cps_geti.model;
 
-public class ListaCandidato {
+public class ListaCandidato implements ListaInterface {
 
 	public Candidato inicio;
 	public Candidato fim;

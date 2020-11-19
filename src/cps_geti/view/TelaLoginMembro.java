@@ -1,15 +1,14 @@
 package cps_geti.view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
-import cps_geti.bd.GerenciamentoUsuario;
+import cps_geti.controller.GerenciamentoUsuario;
 
 import java.awt.Color;
-import java.awt.Button;
 import java.awt.Font;
 
 import javax.swing.JTextField;
@@ -22,9 +21,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 
-public class TelaLogin extends JFrame {
+public class TelaLoginMembro extends JFrame {
 
 	/**
 	 * 
@@ -37,26 +37,9 @@ public class TelaLogin extends JFrame {
 	int xx, xy;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaLogin frame = new TelaLogin();
-					frame.setUndecorated(true);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public TelaLogin() {
+	public TelaLoginMembro() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 100, 1024, 768);
@@ -81,7 +64,7 @@ public class TelaLogin extends JFrame {
 			public void mouseDragged(MouseEvent e) {
 				int x = e.getXOnScreen();
 		        int y = e.getYOnScreen();
-		        TelaLogin.this.setLocation(x - xx, y - xy);  
+		        TelaLoginMembro.this.setLocation(x - xx, y - xy);  
 			}
 		});
 		
@@ -91,25 +74,25 @@ public class TelaLogin extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblImagem = new JLabel("");
-		lblImagem.setIcon(new ImageIcon(TelaLogin.class.getResource("/cps_geti/view/imgs/new-people.jpg")));
+		lblImagem.setIcon(new ImageIcon(TelaLoginMembro.class.getResource("/cps_geti/view/imgs/new-people.jpg")));
 		lblImagem.setBounds(-152, -214, 603, 1187);
 		panel.add(lblImagem);
 		
 		JLabel lblTitulo = new JLabel("Processo Seletivo -GETI");
 		lblTitulo.setForeground(new Color(47, 79, 79));
-		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 18));
-		lblTitulo.setIcon(new ImageIcon(TelaLogin.class.getResource("/cps_geti/view/imgs/cps-nimage.jpg")));
+		lblTitulo.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 18));
+		lblTitulo.setIcon(new ImageIcon(TelaLoginMembro.class.getResource("/cps_geti/view/imgs/cps-nimage.jpg")));
 		lblTitulo.setBounds(519, 81, 411, 159);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblUsuario = new JLabel("Usuário");
 		lblUsuario.setForeground(new Color(47, 79, 79));
-		lblUsuario.setFont(new Font("Open Sans", Font.BOLD, 15));
+		lblUsuario.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
 		lblUsuario.setBounds(519, 317, 70, 15);
 		contentPane.add(lblUsuario);
 		
 		campoUsuario = new JTextField();
-		campoUsuario.setFont(new Font("Open Sans", Font.PLAIN, 13));
+		campoUsuario.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 13));
 		campoUsuario.setBounds(519, 344, 411, 42);
 		contentPane.add(campoUsuario);
 		campoUsuario.setColumns(10);
@@ -122,11 +105,12 @@ public class TelaLogin extends JFrame {
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setForeground(new Color(47, 79, 79));
-		lblSenha.setFont(new Font("Open Sans", Font.BOLD, 15));
+		lblSenha.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
 		lblSenha.setBounds(519, 415, 70, 15);
 		contentPane.add(lblSenha);
 		
 		campoSenha = new JPasswordField();
+		campoSenha.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 12));
 		campoSenha.setBounds(519, 442, 411, 42);
 		contentPane.add(campoSenha);
 		
@@ -136,7 +120,7 @@ public class TelaLogin extends JFrame {
 		separator_1.setBounds(519, 484, 411, 2);
 		contentPane.add(separator_1);
 		
-		Button btnEntrar = new Button("Entrar");
+		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -146,9 +130,9 @@ public class TelaLogin extends JFrame {
 				String msg = "Usuário inexistente ou senha inválida.";
 				
 				if (!testeCriacao) {
-					Sucesso sucesso = new Sucesso(msg);
-					sucesso.setUndecorated(true);
-					sucesso.setVisible(true);
+					Dialogo dialogo = new Dialogo(msg);
+					dialogo.setUndecorated(true);
+					dialogo.setVisible(true);
 				} else {
 					setVisible(false);
 					TelaLogin2 tl2 = new TelaLogin2(); // NOVA TELA EXEMPLO
@@ -158,38 +142,13 @@ public class TelaLogin extends JFrame {
 			}
 		});
 		
-		btnEntrar.setForeground(new Color(255, 255, 255));
-		btnEntrar.setFont(new Font("Open Sans", Font.PLAIN, 18));
-		btnEntrar.setBackground(new Color(70, 130, 180));
-		btnEntrar.setActionCommand("");
-		btnEntrar.setBounds(537, 540, 175, 55);
-		contentPane.add(btnEntrar);
-	
-		Button btnCadastrar = new Button("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				GerenciamentoUsuario gu = new GerenciamentoUsuario();
-				
-				boolean testeCriacao = gu.criarUsuario(campoUsuario.getText(), campoSenha.getPassword());
-				String msg = "Usuário existente. Tente novamente.";
-				
-				if (testeCriacao) {
-					msg = "Usuário criado com sucesso!";
-				}
-				
-				Sucesso sucesso = new Sucesso(msg);
-				sucesso.setUndecorated(true);
-				sucesso.setVisible(true);
-				
-			}
-		});
 		
-		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btnCadastrar.setBackground(new Color(119, 136, 153));
-		btnCadastrar.setActionCommand("");
-		btnCadastrar.setBounds(757, 540, 175, 55);
-		contentPane.add(btnCadastrar);
+		btnEntrar.setForeground(Color.WHITE);
+		btnEntrar.setBackground(new Color(102, 102, 204));
+		btnEntrar.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
+		btnEntrar.setBorder(new LineBorder(new Color(102, 102, 204)));
+		btnEntrar.setBounds(531, 523, 175, 55);
+		contentPane.add(btnEntrar);
 		
 		
 		JLabel lbl_close = new JLabel("X");
@@ -203,6 +162,27 @@ public class TelaLogin extends JFrame {
 		lbl_close.setFont(new Font("Open Sans", Font.BOLD, 23));
 		lbl_close.setBounds(994, 0, 30, 32);
 		contentPane.add(lbl_close);
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AutenticacaoNovoMembro auth = new AutenticacaoNovoMembro();
+				auth.setLogin(campoUsuario.getText());
+				auth.setSenha(campoSenha.getPassword());
+				auth.setUndecorated(true);
+				auth.setVisible(true);
+			}
+		});
+		
+		
+		btnCadastrar.setForeground(Color.WHITE);
+		btnCadastrar.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
+		btnCadastrar.setBorder(new LineBorder(new Color(128, 128, 128)));
+		btnCadastrar.setBackground(new Color(128, 128, 128));
+		btnCadastrar.setBounds(752, 523, 175, 55);
+		contentPane.add(btnCadastrar);
+		
+		
 
 	}
 }

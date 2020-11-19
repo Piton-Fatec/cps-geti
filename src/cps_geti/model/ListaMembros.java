@@ -1,6 +1,6 @@
 package cps_geti.model;
 
-public class ListaMembros {
+public class ListaMembros implements ListaInterface {
 
     private MembroCPS head;
 
