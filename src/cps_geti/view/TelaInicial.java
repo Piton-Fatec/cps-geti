@@ -4,25 +4,20 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-
 import java.awt.Color;
 import java.awt.Font;
-
-
-import javax.swing.JLabel;
-
-import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 
 public class TelaInicial extends JFrame {
 
@@ -125,7 +120,7 @@ public class TelaInicial extends JFrame {
 		btnInscrioParaO.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
+				dispose();
 				TelaInscricao ti = new TelaInscricao();
 				ti.setUndecorated(true);
 				ti.setVisible(true);
@@ -135,7 +130,7 @@ public class TelaInicial extends JFrame {
 		
 		btnInscrioParaO.setForeground(Color.WHITE);
 		btnInscrioParaO.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
-		btnInscrioParaO.setBorder(new LineBorder(new Color(60, 179, 113)));
+		btnInscrioParaO.setBorder(new LineBorder(new Color(60, 179, 113), 5, true));
 		btnInscrioParaO.setBackground(new Color(60, 179, 113));
 		btnInscrioParaO.setBounds(608, 427, 268, 55);
 		contentPane.add(btnInscrioParaO);
@@ -144,8 +139,8 @@ public class TelaInicial extends JFrame {
 		btnMembroCps.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				dispose();
 				TelaLoginMembro tl = new TelaLoginMembro();
-				setVisible(false);
 				tl.setUndecorated(true);
 				tl.setVisible(true);
 			}

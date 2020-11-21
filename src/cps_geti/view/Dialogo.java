@@ -66,7 +66,7 @@ public class Dialogo extends JFrame {
 		Button button = new Button("Ok");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
+				dispose();
 			}
 		});
 		button.setBackground(UIManager.getColor("Button.background"));

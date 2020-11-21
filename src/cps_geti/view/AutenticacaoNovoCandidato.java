@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import cps_geti.controller.GerenciamentoUsuario;
+import cps_geti.controller.GerenciamentoCandidato;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -19,18 +19,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import cps_geti.model.Candidato;
 
-public class AutenticacaoNovoMembro extends JFrame {
+public class AutenticacaoNovoCandidato extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private boolean validacao;
 	
-	private String login;
-	private char[] senha;
+	private Candidato candidato;
 	
 	int xx, xy;
 	private JPasswordField passwordField;
@@ -38,7 +37,7 @@ public class AutenticacaoNovoMembro extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AutenticacaoNovoMembro() {
+	public AutenticacaoNovoCandidato() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(650, 300, 450, 300);
@@ -66,7 +65,7 @@ public class AutenticacaoNovoMembro extends JFrame {
 			}
 		});
 		
-		JLabel lblDigiteASenha = new JLabel("Digite a senha para cadastrar novo membro");
+		JLabel lblDigiteASenha = new JLabel("Digite o seu CPF para confirmar");
 		lblDigiteASenha.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDigiteASenha.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 16));
 		lblDigiteASenha.setBounds(12, 30, 426, 54);
@@ -80,24 +79,16 @@ public class AutenticacaoNovoMembro extends JFrame {
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String password = String.valueOf(passwordField.getPassword());
-				if (password.equals("senha")) {
-					
-					GerenciamentoUsuario gu = new GerenciamentoUsuario();
-					
-					boolean testeCriacao = gu.criarUsuario(getLogin(), getSenha());
-					String msg = "Usuário existente. Tente novamente.";
-					
-					if (testeCriacao) {
-						msg = "Usuário criado com sucesso!";
-					}
-					
-					Dialogo dialogo = new Dialogo(msg);
+				String passCPF = String.valueOf(passwordField.getPassword());
+				
+				if (passCPF.equals(getCandidato().getCPF())) {
+					GerenciamentoCandidato gu = new GerenciamentoCandidato();
+					gu.criarUsuario(getCandidato());
+					Dialogo dialogo = new Dialogo("Inscrito com sucesso!");
 					dialogo.setUndecorated(true);
 					dialogo.setVisible(true);
-
 				} else {
-					Dialogo dialogo = new Dialogo("Senha incorreta!");
+					Dialogo dialogo = new Dialogo("CPF incorreto!");
 					dialogo.setUndecorated(true);
 					dialogo.setVisible(true);
 				}
@@ -111,28 +102,12 @@ public class AutenticacaoNovoMembro extends JFrame {
 		contentPane.add(btnConfirmar);
 	}
 	
-	public boolean getValidacao() {
-		return this.validacao;
+	public void setCandidato(Candidato candidato) {
+		this.candidato = candidato;
 	}
 	
-	public void setValidacao(boolean bool) {
-		this.validacao = bool;
-	}
-	
-	public String getLogin() {
-		return this.login;
-	}
-	
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	
-	public char[] getSenha() {
-		return this.senha;
-	}
-	
-	public void setSenha(char[] cs) {
-		this.senha = cs;
+	public Candidato getCandidato() {
+		return this.candidato;
 	}
 	
 }
