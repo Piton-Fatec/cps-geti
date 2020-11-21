@@ -134,7 +134,7 @@ public class TelaLoginMembro extends JFrame {
 					dialogo.setUndecorated(true);
 					dialogo.setVisible(true);
 				} else {
-					setVisible(false);
+					dispose();
 					TelaLogin2 tl2 = new TelaLogin2(); // NOVA TELA EXEMPLO
 					tl2.setUndecorated(true);
 					tl2.setVisible(true);
@@ -181,6 +181,22 @@ public class TelaLoginMembro extends JFrame {
 		btnCadastrar.setBackground(new Color(128, 128, 128));
 		btnCadastrar.setBounds(752, 523, 175, 55);
 		contentPane.add(btnCadastrar);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				TelaInicial ti = new TelaInicial();
+				ti.setUndecorated(true);
+				ti.setVisible(true);
+			}
+		});
+		btnVoltar.setForeground(new Color(102, 102, 204));
+		btnVoltar.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
+		btnVoltar.setBorder(new LineBorder(new Color(255, 255, 255)));
+		btnVoltar.setBackground(new Color(255, 255, 255));
+		btnVoltar.setBounds(450, 690, 138, 42);
+		contentPane.add(btnVoltar);
 		
 		
 

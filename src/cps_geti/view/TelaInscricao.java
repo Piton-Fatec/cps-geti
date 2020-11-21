@@ -19,7 +19,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
-
+import cps_geti.model.Candidato;
 
 public class TelaInscricao extends JFrame {
 
@@ -28,7 +28,7 @@ public class TelaInscricao extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField campoUsuario;
+	private JTextField campoNome;
 	
 	int xx, xy;
 	private JTextField campoEmail;
@@ -84,23 +84,23 @@ public class TelaInscricao extends JFrame {
 		lblTitulo.setBounds(519, 81, 411, 159);
 		contentPane.add(lblTitulo);
 		
-		JLabel lblUsuario = new JLabel("Nome");
-		lblUsuario.setForeground(new Color(47, 79, 79));
-		lblUsuario.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
-		lblUsuario.setBounds(519, 239, 70, 15);
-		contentPane.add(lblUsuario);
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setForeground(new Color(47, 79, 79));
+		lblNome.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
+		lblNome.setBounds(519, 239, 70, 15);
+		contentPane.add(lblNome);
 		
-		campoUsuario = new JTextField();
-		campoUsuario.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 13));
-		campoUsuario.setBounds(519, 268, 411, 42);
-		contentPane.add(campoUsuario);
-		campoUsuario.setColumns(10);
+		campoNome = new JTextField();
+		campoNome.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 13));
+		campoNome.setBounds(519, 268, 411, 42);
+		contentPane.add(campoNome);
+		campoNome.setColumns(10);
 		
-		JLabel lblSenha = new JLabel("e-mail");
-		lblSenha.setForeground(new Color(47, 79, 79));
-		lblSenha.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
-		lblSenha.setBounds(519, 322, 70, 15);
-		contentPane.add(lblSenha);
+		JLabel lblEmail = new JLabel("e-mail");
+		lblEmail.setForeground(new Color(47, 79, 79));
+		lblEmail.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
+		lblEmail.setBounds(519, 322, 70, 15);
+		contentPane.add(lblEmail);
 		
 		
 		JLabel lbl_close = new JLabel("X");
@@ -149,10 +149,16 @@ public class TelaInscricao extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				AutenticacaoNovoCandidato auth = new AutenticacaoNovoCandidato();
+				auth.setCandidato(new Candidato(
+						campoNome.getText(),
+						campoEmail.getText(),
+						campoCPF.getText(),
+						campoCEP.getText()));
+				auth.setUndecorated(true);
+				auth.setVisible(true);
 			}
 		});
-		
 		
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
@@ -161,6 +167,20 @@ public class TelaInscricao extends JFrame {
 		btnCadastrar.setBounds(647, 535, 175, 55);
 		contentPane.add(btnCadastrar);
 		
-
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				TelaInicial ti = new TelaInicial();
+				ti.setUndecorated(true);
+				ti.setVisible(true);
+			}
+		});
+		btnVoltar.setForeground(new Color(102, 102, 204));
+		btnVoltar.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
+		btnVoltar.setBorder(new LineBorder(new Color(255, 255, 255)));
+		btnVoltar.setBackground(new Color(255, 255, 255));
+		btnVoltar.setBounds(450, 690, 138, 42);
+		contentPane.add(btnVoltar);
 	}
 }

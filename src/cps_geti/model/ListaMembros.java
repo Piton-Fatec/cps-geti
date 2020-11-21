@@ -2,7 +2,7 @@ package cps_geti.model;
 
 public class ListaMembros implements ListaInterface {
 
-    private MembroCPS head;
+    private MembroCPS head = null;
 
 
     public boolean isEmpty() {
@@ -16,7 +16,6 @@ public class ListaMembros implements ListaInterface {
                 this.head = membro;
                 return;
             }
-
             membro.setNext(this.head);
             this.head = membro;
         } catch (NullPointerException e) {
@@ -155,7 +154,11 @@ public class ListaMembros implements ListaInterface {
         return membroRemovido;
     }
     
+    
     public boolean contains(String user) {
+    	if (this.head == null) {
+    		return false;
+    	}
     	return checkUser(this.head, user);
     }
     
@@ -169,6 +172,7 @@ public class ListaMembros implements ListaInterface {
         	return checkUser(head.getNext(), user);
         }
     }
+    
     
     public MembroCPS getUser(String user) {
     	return returnUser(this.head, user);
