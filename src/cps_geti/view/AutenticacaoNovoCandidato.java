@@ -81,18 +81,22 @@ public class AutenticacaoNovoCandidato extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String passCPF = String.valueOf(passwordField.getPassword());
 				
+				String msg = "CPF incorreto!";
+				
 				if (passCPF.equals(getCandidato().getCPF())) {
+					msg = "Candidato existente";
 					GerenciamentoCandidato manageCandidato = new GerenciamentoCandidato();
-					manageCandidato.criarUsuario(getCandidato());
-					Dialogo dialogo = new Dialogo("Inscrito com sucesso!");
-					dialogo.setUndecorated(true);
-					dialogo.setVisible(true);
-				} else {
-					Dialogo dialogo = new Dialogo("CPF incorreto!");
-					dialogo.setUndecorated(true);
-					dialogo.setVisible(true);
+					boolean testeCriar = manageCandidato.criarUsuario(getCandidato());
+					
+					if (testeCriar) {
+						msg = "Inscrito com sucesso!";
+					}
 				}
+				
 				dispose();
+				Dialogo dialogo = new Dialogo(msg);
+				dialogo.setUndecorated(true);
+				dialogo.setVisible(true);
 			}
 		});
 		btnConfirmar.setBackground(new Color(192, 192, 192));

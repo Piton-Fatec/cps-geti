@@ -15,13 +15,17 @@ public class GerenciamentoCandidato {
 	
 	private static String ARQUIVO = "bd/candidatos.txt";	
 	
-	public static ListaCandidato retornaListaCandidatos() {
+	public static ListaCandidato retornaListaCandidatos()  {
 		ListaCandidato candidatos = new ListaCandidato();
+		BufferedReader br = null;
 		
-		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(ARQUIVO)))) {
+		
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(ARQUIVO)));
 			String line = br.readLine();
-			Candidato candidato = new Candidato();
+			
 			while (line != null) {
+				Candidato candidato = new Candidato();
 				String[] arr = line.split(",");
 				candidato.setNome(arr[0]);
 				candidato.setEmail(arr[1]);
@@ -35,6 +39,7 @@ public class GerenciamentoCandidato {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		return candidatos;
 	}
 
@@ -54,6 +59,8 @@ public class GerenciamentoCandidato {
 	
 	public boolean criarUsuario(Candidato candidato) {
 		ListaCandidato listaCandidatos = retornaListaCandidatos();
+		
+		System.out.println(!listaCandidatos.contains(candidato.getCPF()));
 		
 		if (!listaCandidatos.contains(candidato.getCPF())) {
 			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ARQUIVO)))) {
@@ -84,6 +91,7 @@ public class GerenciamentoCandidato {
 	
 	public void removerCandidatos(int[] pos) {
 		ListaCandidato listaCandidatos = retornaListaCandidatos();
+		
 		for (int i : pos) {
 			listaCandidatos.removeAnyPosition(i);
 		}
@@ -110,6 +118,7 @@ public class GerenciamentoCandidato {
 			while (current != null) {
 				bw.write(current.toString() + "\n");
 				current = candidatos.removeFront();
+				System.out.println(current);
 			}
 			bw.flush();
 			bw.close();
