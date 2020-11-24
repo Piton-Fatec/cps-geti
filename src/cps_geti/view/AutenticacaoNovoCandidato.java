@@ -82,8 +82,8 @@ public class AutenticacaoNovoCandidato extends JFrame {
 				String passCPF = String.valueOf(passwordField.getPassword());
 				
 				if (passCPF.equals(getCandidato().getCPF())) {
-					GerenciamentoCandidato gu = new GerenciamentoCandidato();
-					gu.criarUsuario(getCandidato());
+					GerenciamentoCandidato manageCandidato = new GerenciamentoCandidato();
+					manageCandidato.criarUsuario(getCandidato());
 					Dialogo dialogo = new Dialogo("Inscrito com sucesso!");
 					dialogo.setUndecorated(true);
 					dialogo.setVisible(true);
@@ -109,5 +109,4 @@ public class AutenticacaoNovoCandidato extends JFrame {
 	public Candidato getCandidato() {
 		return this.candidato;
 	}
-	
 }

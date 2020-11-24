@@ -13,16 +13,21 @@ import cps_geti.model.Candidato;
 
 public class GerenciamentoCandidato {
 	
+	private static String ARQUIVO = "bd/candidatos.txt";	
+	
 	public static ListaCandidato retornaListaCandidatos() {
-		String arquivo = "bd/candidatos.txt";
 		ListaCandidato candidatos = new ListaCandidato();
 		
-		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(arquivo)))) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(ARQUIVO)))) {
 			String line = br.readLine();
-			
+			Candidato candidato = new Candidato();
 			while (line != null) {
 				String[] arr = line.split(",");
-				Candidato candidato = new Candidato(arr[0], arr[1], arr[2], arr[3]);
+				candidato.setNome(arr[0]);
+				candidato.setEmail(arr[1]);
+				candidato.setCPF(arr[2]);
+				candidato.setCEP(arr[3]);
+				candidato.setSituacao(arr[4]);
 				candidatos.addBack(candidato);
 				line = br.readLine();
 			}
@@ -35,10 +40,10 @@ public class GerenciamentoCandidato {
 
 	
 	public boolean candidatoValido(String nome, String cpf) {
-		ListaCandidato candidatos = retornaListaCandidatos();
+		ListaCandidato listaCandidatos = retornaListaCandidatos();
 		
-		if (candidatos.contains(nome)) {
-			Candidato candidato = candidatos.getUser(nome);
+		if (listaCandidatos.contains(nome)) {
+			Candidato candidato = listaCandidatos.getUser(nome);
 			if (candidato.getCPF().equals(String.valueOf(cpf))) {
 				return true;
 			}
@@ -48,17 +53,16 @@ public class GerenciamentoCandidato {
 
 	
 	public boolean criarUsuario(Candidato candidato) {
-		String arquivo = "bd/candidatos.txt";
-		ListaCandidato candidatos = retornaListaCandidatos();
+		ListaCandidato listaCandidatos = retornaListaCandidatos();
 		
-		if (!candidatos.contains(candidato.getCPF())) {
-			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivo)))) {
-				candidatos.addBack(candidato);
+		if (!listaCandidatos.contains(candidato.getCPF())) {
+			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ARQUIVO)))) {
+				listaCandidatos.addBack(candidato);
 				
-				Candidato current = candidatos.removeFront();
+				Candidato current = listaCandidatos.removeFront();
 				while (current != null) {
 					bw.write(current.toString() + "\n");
-					current = candidatos.removeFront();
+					current = listaCandidatos.removeFront();
 				}
 				bw.flush();
 				bw.close();
@@ -69,5 +73,49 @@ public class GerenciamentoCandidato {
 			return true;
 		}
 		return false;
+	}
+	
+	
+	public Object[][] retonaListaFormatada() {
+		ListaCandidato listaCandidatos = retornaListaCandidatos();
+		return listaCandidatos.formatList();
+	}
+	
+	
+	public void removerCandidatos(int[] pos) {
+		ListaCandidato listaCandidatos = retornaListaCandidatos();
+		for (int i : pos) {
+			listaCandidatos.removeAnyPosition(i);
+		}
+		atualizarBD(listaCandidatos);
+	}
+	
+	
+	public void confirmarCandidatos(int[] pos) {
+		ListaCandidato listaCandidatos = retornaListaCandidatos();
+		Candidato candidato;
+		for (int i : pos) {
+			candidato = listaCandidatos.removeAnyPosition(i);
+			candidato.setSituacao("Inscrição deferida");
+			listaCandidatos.addBack(candidato);
+		}
+		atualizarBD(listaCandidatos);
+	}
+	
+	
+	private void atualizarBD(ListaCandidato candidatos) {
+		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ARQUIVO)))) {
+			Candidato current = candidatos.removeFront();
+			
+			while (current != null) {
+				bw.write(current.toString() + "\n");
+				current = candidatos.removeFront();
+			}
+			bw.flush();
+			bw.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
