@@ -1,2 +1,1 @@
-Renan,email@email.com,789,123,Não deferida
-ren,re@na,7891,456,Não deferida
+dasdasd,dasds,456,444,Inscrição deferida

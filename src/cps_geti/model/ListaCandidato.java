@@ -22,7 +22,7 @@ class Head {
 
 public class ListaCandidato implements ListaInterface {
 
-	private Head head;
+	private Head head = new Head();
 	
     public void addFront(Candidato candidato) {
         try {
@@ -47,9 +47,8 @@ public class ListaCandidato implements ListaInterface {
     
     public void addBack(Candidato candidato) {
         try {
-            if (this.head == null) {
-            	this.head = new Head();
-                this.head.setFirst(candidato);
+            if (this.head.elements == 0) {
+            	this.head.setFirst(candidato);
                 this.head.setLast(candidato);
                 this.head.elements += 1;
                 return;
@@ -72,7 +71,7 @@ public class ListaCandidato implements ListaInterface {
         if (candidatoRemovido == null) {
         	this.head.setFirst(null);
         } else {
-        	this.head.setFirst(this.head.getFirst().getNext());
+        	this.head.setFirst(candidatoRemovido.getNext());
         }
         
         this.head.elements -= 1;
@@ -163,15 +162,14 @@ public class ListaCandidato implements ListaInterface {
     
     
     public boolean checkUser(Candidato head, String cpf) {
-    	if (head == null) {
-    		return false;
-    	} else if (head.getCPF().equals(cpf)) {
-    		return true;
-    	} else if (head.getNext() == null) {
-            return false;
-        } else {
-        	return checkUser(head.getNext(), cpf);
-        }
+    	Candidato current = head;
+    	while (current != null) {
+    		if (current.getCPF().equals(cpf)) {
+    			return true;
+    		}
+    		current = current.getNext();
+    	}
+    	return false;
     }
     
     
