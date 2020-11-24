@@ -189,4 +189,16 @@ public class ListaCandidato implements ListaInterface {
         	return returnUser(head.getNext(), cpf);
         }
     }
+    
+    public int getLength() {
+    	return this.head.elements;
+    }
+    
+    public Candidato getfirst() {
+    	return this.head.getFirst();
+    }
+    
+    public Candidato getLast() {
+    	return this.head.getLast();
+    }
 }
