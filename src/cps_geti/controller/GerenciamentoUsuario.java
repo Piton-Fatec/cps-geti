@@ -13,13 +13,14 @@ import cps_geti.model.MembroCPS;
 
 public class GerenciamentoUsuario {
 	
+	private static String arquivo = "bd/membros.txt";
+	
 	public static ListaMembros retornaListaMembros() {
-		String arquivo = "bd/membros.txt";
 		ListaMembros membros = new ListaMembros();
 		
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(arquivo)))) {
 			String line = br.readLine();
-			
+
 			while (line != null) {
 				String[] arrString = line.split(",");
 				MembroCPS membro = new MembroCPS(arrString[0], arrString[1]);
@@ -35,10 +36,9 @@ public class GerenciamentoUsuario {
 
 	
 	public boolean usuarioValido(String login, char[] senha) {
-		ListaMembros membros = retornaListaMembros();
-		
-		if (membros.contains(login)) {
-			MembroCPS membro = membros.getUser(login);
+		ListaMembros listaMembros = retornaListaMembros();
+		if (listaMembros.contains(login)) {
+			MembroCPS membro = listaMembros.getUser(login);
 			if (membro.getSenha().equals(String.valueOf(senha))) {
 				return true;
 			}
@@ -48,22 +48,18 @@ public class GerenciamentoUsuario {
 
 	
 	public boolean criarUsuario(String login, char[] senha) {
-		String arquivo = "bd/membros.txt";
-		ListaMembros membros = retornaListaMembros();
-		
-		if (!membros.contains(login)) {
+		ListaMembros listaMembros = retornaListaMembros();
+		if (!listaMembros.contains(login)) {
 			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivo)))) {
-				membros.addBack(new MembroCPS(login, String.valueOf(senha)));
+				listaMembros.addBack(new MembroCPS(login, String.valueOf(senha)));
 				
-				
-				MembroCPS membro = membros.removeFront();
+				MembroCPS membro = listaMembros.removeFront();
 				while (membro != null) {
 					bw.write(membro.toString() + "\n");
-					membro = membros.removeFront();
+					membro = listaMembros.removeFront();
 				}
 				bw.flush();
-				bw.close();
-				
+				bw.close();		
 				
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -19,6 +19,8 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+
+import cps_geti.controller.GerenciamentoCandidato;
 import cps_geti.model.Candidato;
 
 public class TelaInscricao extends JFrame {
@@ -39,6 +41,7 @@ public class TelaInscricao extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInscricao() {
+		
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 100, 1024, 768);
@@ -125,25 +128,25 @@ public class TelaInscricao extends JFrame {
 		campoCEP = new JTextField();
 		campoCEP.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 13));
 		campoCEP.setColumns(10);
-		campoCEP.setBounds(519, 431, 185, 42);
+		campoCEP.setBounds(761, 434, 185, 42);
 		contentPane.add(campoCEP);
 		
 		campoCPF = new JTextField();
 		campoCPF.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 13));
 		campoCPF.setColumns(10);
-		campoCPF.setBounds(752, 431, 185, 42);
+		campoCPF.setBounds(519, 434, 185, 42);
 		contentPane.add(campoCPF);
 		
 		JLabel lblCep = new JLabel("CEP");
 		lblCep.setForeground(new Color(47, 79, 79));
 		lblCep.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
-		lblCep.setBounds(519, 403, 70, 15);
+		lblCep.setBounds(761, 403, 70, 15);
 		contentPane.add(lblCep);
 		
 		JLabel lblCpf = new JLabel("CPF");
 		lblCpf.setForeground(new Color(47, 79, 79));
 		lblCpf.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
-		lblCpf.setBounds(752, 403, 70, 15);
+		lblCpf.setBounds(519, 403, 70, 15);
 		contentPane.add(lblCpf);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
@@ -154,7 +157,8 @@ public class TelaInscricao extends JFrame {
 						campoNome.getText(),
 						campoEmail.getText(),
 						campoCPF.getText(),
-						campoCEP.getText()));
+						campoCEP.getText(),
+						"Não deferida"));
 				auth.setUndecorated(true);
 				auth.setVisible(true);
 			}
@@ -171,7 +175,7 @@ public class TelaInscricao extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				TelaInicial ti = new TelaInicial();
+				Home ti = new Home();
 				ti.setUndecorated(true);
 				ti.setVisible(true);
 			}

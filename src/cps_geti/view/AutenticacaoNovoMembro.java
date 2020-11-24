@@ -82,10 +82,8 @@ public class AutenticacaoNovoMembro extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String password = String.valueOf(passwordField.getPassword());
 				if (password.equals("senha")) {
-					
-					GerenciamentoUsuario gu = new GerenciamentoUsuario();
-					
-					boolean testeCriacao = gu.criarUsuario(getLogin(), getSenha());
+					GerenciamentoUsuario manageUsuario = new GerenciamentoUsuario();
+					boolean testeCriacao = manageUsuario.criarUsuario(getLogin(), getSenha());
 					String msg = "Usuário existente. Tente novamente.";
 					
 					if (testeCriacao) {

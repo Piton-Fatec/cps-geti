@@ -16,10 +16,8 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class TelaInicial extends JFrame {
+public class Home extends JFrame {
 
 	/**
 	 * 
@@ -36,7 +34,7 @@ public class TelaInicial extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaInicial frame = new TelaInicial();
+					Home frame = new Home();
 					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -49,7 +47,7 @@ public class TelaInicial extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaInicial() {
+	public Home() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 100, 1024, 768);
@@ -74,7 +72,7 @@ public class TelaInicial extends JFrame {
 			public void mouseDragged(MouseEvent e) {
 				int x = e.getXOnScreen();
 		        int y = e.getYOnScreen();
-		        TelaInicial.this.setLocation(x - xx, y - xy);  
+		        Home.this.setLocation(x - xx, y - xy);  
 			}
 		});
 		
@@ -84,14 +82,14 @@ public class TelaInicial extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblImagem = new JLabel("");
-		lblImagem.setIcon(new ImageIcon(TelaInicial.class.getResource("/cps_geti/view/imgs/new-people.jpg")));
+		lblImagem.setIcon(new ImageIcon(Home.class.getResource("/cps_geti/view/imgs/new-people.jpg")));
 		lblImagem.setBounds(-152, -214, 603, 1187);
 		panel.add(lblImagem);
 		
 		JLabel lblTitulo = new JLabel("Processo Seletivo -GETI");
 		lblTitulo.setForeground(new Color(47, 79, 79));
 		lblTitulo.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 18));
-		lblTitulo.setIcon(new ImageIcon(TelaInicial.class.getResource("/cps_geti/view/imgs/cps-nimage.jpg")));
+		lblTitulo.setIcon(new ImageIcon(Home.class.getResource("/cps_geti/view/imgs/cps-nimage.jpg")));
 		lblTitulo.setBounds(519, 81, 411, 159);
 		contentPane.add(lblTitulo);
 		
@@ -113,10 +111,6 @@ public class TelaInicial extends JFrame {
 		
 		
 		JButton btnInscrioParaO = new JButton("Inscrição para o edital");
-		btnInscrioParaO.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnInscrioParaO.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

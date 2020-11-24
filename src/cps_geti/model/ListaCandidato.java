@@ -93,6 +93,67 @@ public class ListaCandidato implements ListaInterface {
     }
     
     
+    public Candidato removeAnyPosition(int pos) {
+        Candidato candidatoRemovido = null;
+
+        try {
+            Candidato current = this.head.getFirst();
+
+            if (pos == 0) {
+                candidatoRemovido = current;
+                this.head.setFirst(current.getNext());
+            } else {
+                current = getSomeElement(current, pos);
+
+                candidatoRemovido = current.getNext();
+
+                if (candidatoRemovido.getNext() != null) {
+                    candidatoRemovido.getNext().setPrevious(current);
+                    current.setNext(candidatoRemovido.getNext());
+                } else {
+                    current.setNext(null);
+                }
+            }
+            this.head.elements -= 1;
+
+        } catch (NullPointerException e) {
+            System.out.println("This operation can not be executed. Empty list.");
+        }
+
+        return candidatoRemovido;
+    }
+    
+    
+    public Candidato getSomeElement(Candidato head, int pos) {
+        if (pos <= 1) {
+            return head;
+        } else {
+            return getSomeElement(head.getNext(), pos-1);
+        }
+    }
+    
+    
+    public Object[][] formatList() {
+    	Object[][] data = new Object[this.head.elements][5];
+    	
+    	Candidato current = this.head.getFirst();
+    	
+    	for (int i = 0; i < this.head.elements; i++) {
+    		Object[] arr = {
+    				current.getNome(),
+    				current.getEmail(),
+    				current.getCPF(),
+    				current.getCEP(),
+    				current.getSituacao()
+    				};
+    		data[i] = arr;
+    		current = current.getNext();
+    	}
+    	
+    	return data;
+    }
+    
+    
     public boolean contains(String cpf) {
     	if (this.head == null) {
     		return false;

@@ -40,6 +40,7 @@ public class TelaLoginMembro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaLoginMembro() {
+		
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 100, 1024, 768);
@@ -124,9 +125,8 @@ public class TelaLoginMembro extends JFrame {
 		btnEntrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				GerenciamentoUsuario gu = new GerenciamentoUsuario();
-				
-				boolean testeCriacao = gu.usuarioValido(campoUsuario.getText(), campoSenha.getPassword());
+				GerenciamentoUsuario manageUsuario = new GerenciamentoUsuario();
+				boolean testeCriacao = manageUsuario.usuarioValido(campoUsuario.getText(), campoSenha.getPassword());
 				String msg = "Usuário inexistente ou senha inválida.";
 				
 				if (!testeCriacao) {
@@ -135,9 +135,9 @@ public class TelaLoginMembro extends JFrame {
 					dialogo.setVisible(true);
 				} else {
 					dispose();
-					TelaLogin2 tl2 = new TelaLogin2(); // NOVA TELA EXEMPLO
-					tl2.setUndecorated(true);
-					tl2.setVisible(true);
+					TelaInicialMembro tl = new TelaInicialMembro(campoUsuario.getText());
+					tl.setUndecorated(true);
+					tl.setVisible(true);
 				}
 			}
 		});
@@ -186,7 +186,7 @@ public class TelaLoginMembro extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				TelaInicial ti = new TelaInicial();
+				Home ti = new Home();
 				ti.setUndecorated(true);
 				ti.setVisible(true);
 			}
