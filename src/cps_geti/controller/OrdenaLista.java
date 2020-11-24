@@ -3,22 +3,25 @@ package cps_geti.controller;
 import cps_geti.model.ListaCandidato;
 import cps_geti.controller.GerenciamentoCandidato;
 import cps_geti.model.Candidato;
+import cps_geti.controller.OrdenaListaUtils;
 
-public class OrdenaLista {
-	
-	private ListaCandidato listaDesordenada;	
-	
+
+public class OrdenaLista {	
 	
 	public OrdenaLista() {
 		super();
 	}
 	
+	
 	public ListaCandidato quickSort(ListaCandidato listaCandidatos) {
+		/**
+		 * recebe como parâmetro lista de alunos e atualiza a lista
+		 * 
+		 */
 		if (listaCandidatos == null) {
 			System.out.println("lista de alunos vazia"); return null;
 		}		
 		
-		this.listaDesordenada = listaCandidatos;	
 		return quickSort(listaCandidatos, "centro");
 	}
 	
@@ -34,11 +37,9 @@ public class OrdenaLista {
 			}
 			
 			else{
-				ListaCandidatos menor = listaMenor(listaCandidatos, pivo);
-				ListaCandidatos igual = listaIgual(listaCandidatos, pivo);
-				ListaCandidatos maior = listaMaior(listaCandidatos, pivo);
-				
-				return concatena(menor+igual+maior);								
+				OrdenaListaUtils aux = new OrdenaListaUtils();
+				ListaCandidato menor_igual_maior = aux.listaMenorIgualMaior(listaCandidatos, elementoPivo);	
+				return menor_igual_maior;
 			}			
 			
 		} catch (Exception e) {
@@ -55,24 +56,28 @@ public class OrdenaLista {
 		 *  sendo essas as três opções de pivô - [inicio, centro, fim]
 		 *  
 		 */
+		try {
+			if (pivo.equals("inicio")) {
+				return listaCandidatos.getfirst();
+			}
 		
-		if (pivo.equals("inicio")) {
-			return listaCandidatos.getfirst();
+			else if (pivo.equals("final")) {
+				return listaCandidatos.getLast();
+			}
+		
+			else {
+				return findPivo(listaCandidatos.getfirst(),(listaCandidatos.getLength()/2), 0);
+			}	
+			
+		} catch (Exception e) {
+			System.out.println("exceção não tratada [findPivo 1]" + e.getStackTrace());
+			return null;
 		}
-		
-		else if (pivo.equals("final")) {
-			return listaCandidatos.getLast();
-		}
-		
-		else {
-			return findPivo(listaCandidatos.getfirst(),(listaCandidatos.getLength()/2), 0);
-		}		
 	}
 	
 	
 	private Candidato findPivo(Candidato candidato, int pivo, int contador) {
-		try {
-			
+		try {			
 			if (pivo < 1) {
 				pivo = 0 ;
 			}
@@ -86,18 +91,8 @@ public class OrdenaLista {
 			}		
 			
 		} catch (Exception e) {
-			System.out.println("exceção não tratada [findPivo]" + e.getStackTrace());
+			System.out.println("exceção não tratada [findPivo 2]" + e.getStackTrace());
 			return null;
 		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	}		
 }

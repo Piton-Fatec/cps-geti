@@ -1,1 +1,3 @@
-dasdasd,dasds,456,444,Inscrição deferida
+renan,email@email.com,123456,457984,Não deferida
+mark,ema@com.com,15698,741,Não deferida
+mateus,mateus,0000,0000,Não deferida
