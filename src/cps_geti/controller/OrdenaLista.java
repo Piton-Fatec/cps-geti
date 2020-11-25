@@ -43,7 +43,7 @@ public class OrdenaLista {
 			}			
 			
 		} catch (Exception e) {
-			System.out.println("Exce��o n�o tratada [ListaCandidato.QuickSort]" + e.getStackTrace());
+			System.out.println("Exceção não tratada [ListaCandidato.QuickSort]" + e.getStackTrace());
 			return null;
 		}
 		
@@ -52,8 +52,8 @@ public class OrdenaLista {
 	
 	private Candidato findPivo(ListaCandidato listaCandidatos, String pivo) {
 		/**
-		 *  retorna primeiro elemento da lista, ultimo ou ent�o chama o metodo findPivo para encontrar o elemento central
-		 *  sendo essas as tr�s op��es de piv� - [inicio, centro, fim]
+		 *  retorna primeiro elemento da lista, ultimo ou então chama o metodo findPivo para encontrar o elemento central
+		 *  sendo essas as três opções de pivô - [inicio, centro, fim]
 		 *  
 		 */
 		try {
@@ -70,7 +70,7 @@ public class OrdenaLista {
 			}	
 			
 		} catch (Exception e) {
-			System.out.println("exce��o n�o tratada [findPivo 1]" + e.getStackTrace());
+			System.out.println("Exceção não tratada [findPivo 1]" + e.getStackTrace());
 			return null;
 		}
 	}
@@ -91,7 +91,7 @@ public class OrdenaLista {
 			}		
 			
 		} catch (Exception e) {
-			System.out.println("exce��o n�o tratada [findPivo 2]" + e.getStackTrace());
+			System.out.println("Exceção não tratada [findPivo 2]" + e.getStackTrace());
 			return null;
 		}
 	}
