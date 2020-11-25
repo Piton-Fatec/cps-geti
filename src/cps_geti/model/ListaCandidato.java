@@ -2,8 +2,8 @@ package cps_geti.model;
 
 class Head {
 	
-	private Candidato first;
-	private Candidato last;
+	private Candidato first = null;
+	private Candidato last = null;
 	public int elements = 0;
 	
 	public Candidato getFirst() {
@@ -67,27 +67,32 @@ public class ListaCandidato implements ListaInterface {
     
     public Candidato removeFront() {
         Candidato candidatoRemovido = this.head.getFirst();
+        this.head.elements -= 1;
         
-        if (candidatoRemovido == null) {
+        if (candidatoRemovido == null || this.head.elements <= 0) {
+        	this.head.setLast(null);
         	this.head.setFirst(null);
-        } else {
-        	this.head.setFirst(candidatoRemovido.getNext());
+        	this.head.elements = 0;
+        	return candidatoRemovido;
         }
         
-        this.head.elements -= 1;
+        this.head.setFirst(candidatoRemovido.getNext());
         return candidatoRemovido;
     }
     
     
     public Candidato removeBack() {
         Candidato candidatoRemovido = this.head.getLast();
-
-        if (candidatoRemovido == null) {
-        	this.head.setLast(null);
-        } else {
-        	this.head.setLast(this.head.getLast().getPrevious());   
-        }
         this.head.elements -= 1;
+        
+        if (candidatoRemovido == null || this.head.elements <= 0) {
+        	this.head.setLast(null);
+        	this.head.setFirst(null);
+        	this.head.elements = 0;
+        	return candidatoRemovido;
+        }
+        
+        this.head.setLast(this.head.getLast().getPrevious()); 
         return candidatoRemovido;
     }
     

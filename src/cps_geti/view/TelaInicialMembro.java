@@ -92,7 +92,7 @@ public class TelaInicialMembro extends JFrame {
 		String[] columnNames = { "Nome", "e-mail", "CPF", "CEP", "Situação" };
 		
 		GerenciamentoCandidato manageCandidato = new GerenciamentoCandidato();
-		Object[][] data = manageCandidato.retonaListaFormatada();
+		Object[][] data = manageCandidato.retonaListaFormatadaOrdenada();
 
 		table = new JTable(data, columnNames);
 		table.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 14));

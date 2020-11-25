@@ -26,7 +26,6 @@ public class Home extends JFrame {
 	private JPanel contentPane;
 	
 	int xx, xy;
-
 	/**
 	 * Launch the application.
 	 */

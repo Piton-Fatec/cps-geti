@@ -15,7 +15,7 @@ public class OrdenaLista {
 	
 	public ListaCandidato quickSort(ListaCandidato listaCandidatos) {
 		/**
-		 * recebe como parâmetro lista de alunos e atualiza a lista
+		 * recebe como parï¿½metro lista de alunos e atualiza a lista
 		 * 
 		 */
 		if (listaCandidatos == null) {
@@ -43,7 +43,7 @@ public class OrdenaLista {
 			}			
 			
 		} catch (Exception e) {
-			System.out.println("Exceção não tratada [ListaCandidato.QuickSort]" + e.getStackTrace());
+			System.out.println("Exceï¿½ï¿½o nï¿½o tratada [ListaCandidato.QuickSort]" + e.getStackTrace());
 			return null;
 		}
 		
@@ -52,8 +52,8 @@ public class OrdenaLista {
 	
 	private Candidato findPivo(ListaCandidato listaCandidatos, String pivo) {
 		/**
-		 *  retorna primeiro elemento da lista, ultimo ou então chama o metodo findPivo para encontrar o elemento central
-		 *  sendo essas as três opções de pivô - [inicio, centro, fim]
+		 *  retorna primeiro elemento da lista, ultimo ou entï¿½o chama o metodo findPivo para encontrar o elemento central
+		 *  sendo essas as trï¿½s opï¿½ï¿½es de pivï¿½ - [inicio, centro, fim]
 		 *  
 		 */
 		try {
@@ -70,7 +70,7 @@ public class OrdenaLista {
 			}	
 			
 		} catch (Exception e) {
-			System.out.println("exceção não tratada [findPivo 1]" + e.getStackTrace());
+			System.out.println("exceï¿½ï¿½o nï¿½o tratada [findPivo 1]" + e.getStackTrace());
 			return null;
 		}
 	}
@@ -91,8 +91,60 @@ public class OrdenaLista {
 			}		
 			
 		} catch (Exception e) {
-			System.out.println("exceção não tratada [findPivo 2]" + e.getStackTrace());
+			System.out.println("exceï¿½ï¿½o nï¿½o tratada [findPivo 2]" + e.getStackTrace());
 			return null;
 		}
-	}		
+	}
+	
+	public void mergeSort(ListaCandidato candidatos) {
+		int size = candidatos.getLength();
+		
+		if (size < 2) {
+			return;
+		}
+		
+		ListaCandidato arr1 = new ListaCandidato();
+		ListaCandidato arr2 = new ListaCandidato();
+		int i = 0;
+		
+		while (i < size/2) {
+			arr1.addBack(candidatos.removeFront());
+			i++;
+		}
+		
+		Candidato current = candidatos.removeFront();
+		while (current != null) {
+			arr2.addBack(current);
+			current = candidatos.removeFront();
+		}
+		
+		mergeSort(arr1);
+		mergeSort(arr2);
+		merge(arr1, arr2, candidatos);
+	}
+	
+	public void merge(ListaCandidato arr1, ListaCandidato arr2, ListaCandidato candidatos) {
+		Candidato current1 = arr1.removeFront();
+		Candidato current2 = arr2.removeFront();
+		
+		while (current1 != null && current2 != null) {
+			if (current1.getCPF().compareTo(current2.getCPF()) <= 0) {
+				candidatos.addBack(current1);
+				current1 = arr1.removeFront();
+			} else {
+				candidatos.addBack(current2);
+				current2 = arr2.removeFront();
+			}
+		}
+
+		while(current1 != null) {
+			candidatos.addBack(current1);
+			current1 = arr1.removeFront();
+		}
+		while(current2 != null) {
+			candidatos.addBack(current2);
+			current2 = arr2.removeFront();
+		}
+	}
+	
 }
