@@ -13,7 +13,7 @@ import cps_geti.model.Candidato;
 
 public class GerenciamentoCandidato {
 	
-	private static String ARQUIVO = "bd/candidatos.txt";	
+	private static String ARQUIVO = "bd/candidatos.txt";
 	
 	public static ListaCandidato retornaListaCandidatos()  {
 		ListaCandidato candidatos = new ListaCandidato();
@@ -83,8 +83,11 @@ public class GerenciamentoCandidato {
 	}
 	
 	
-	public Object[][] retonaListaFormatada() {
+	public Object[][] retonaListaFormatadaOrdenada() {
 		ListaCandidato listaCandidatos = retornaListaCandidatos();
+		OrdenaLista sorting = new OrdenaLista();
+		sorting.mergeSort(listaCandidatos);
+		
 		return listaCandidatos.formatList();
 	}
 	
@@ -105,6 +108,7 @@ public class GerenciamentoCandidato {
 		for (int i : pos) {
 			candidato = listaCandidatos.removeAnyPosition(i);
 			candidato.setSituacao("Inscrição deferida");
+			candidato.setNext(null);
 			listaCandidatos.addBack(candidato);
 		}
 		atualizarBD(listaCandidatos);
@@ -118,7 +122,6 @@ public class GerenciamentoCandidato {
 			while (current != null) {
 				bw.write(current.toString() + "\n");
 				current = candidatos.removeFront();
-				System.out.println(current);
 			}
 			bw.flush();
 			bw.close();
