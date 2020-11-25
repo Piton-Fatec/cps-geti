@@ -15,7 +15,7 @@ public class OrdenaLista {
 	
 	public ListaCandidato quickSort(ListaCandidato listaCandidatos) {
 		/**
-		 * recebe como par�metro lista de alunos e atualiza a lista
+		 * recebe como parâmetro lista de alunos e atualiza a lista
 		 * 
 		 */
 		if (listaCandidatos == null) {
