@@ -3,7 +3,6 @@ package cps_geti.controller;
 import cps_geti.model.ListaCandidato;
 import cps_geti.controller.GerenciamentoCandidato;
 import cps_geti.model.Candidato;
-import cps_geti.controller.OrdenaListaUtils;
 
 
 public class OrdenaLista {	
@@ -12,89 +11,91 @@ public class OrdenaLista {
 		super();
 	}
 	
-	
 	public ListaCandidato quickSort(ListaCandidato listaCandidatos) {
 		/**
-		 * recebe como parâmetro lista de alunos e atualiza a lista
+		 * recebe como par�metro lista de alunos e atualiza a lista
 		 * 
 		 */
-		if (listaCandidatos == null) {
-			System.out.println("lista de alunos vazia"); return null;
+		if (listaCandidatos.getLength() <= 1) {
+			System.out.println("lista de alunos vazia"); 
+			return listaCandidatos;
 		}		
 		
-		return quickSort(listaCandidatos, "centro");
-	}
-	
-	
-	private ListaCandidato quickSort(ListaCandidato listaCandidatos, String pivo) {
-		try {
+		else {
+			Candidato pivo = listaCandidatos.getLast();
+			Candidato first = listaCandidatos.getfirst();
+			int teste;
 			
-			Candidato elementoPivo = findPivo(listaCandidatos, pivo);
+			ListaCandidato less = new ListaCandidato();
+			ListaCandidato equal = new ListaCandidato();
+			ListaCandidato bigger = new ListaCandidato();
 			
-			
-			if (listaCandidatos.getLength() <= 1) {
-				return listaCandidatos;
+			for (int i = 0; i < listaCandidatos.getLength(); i ++) {
+				teste = first.getNome().compareTo(pivo.getNome());
+				if (teste < 0) {
+					Candidato aux = new Candidato(first.getNome(),first.getEmail(),first.getCPF(),first.getCEP(),first.getSituacao());
+					less.addBack(aux);
+					first = first.getNext();
+				}
+				else if (teste == 0) {
+					Candidato aux = new Candidato(first.getNome(),first.getEmail(),first.getCPF(),first.getCEP(),first.getSituacao());
+					equal.addBack(aux);
+					first = first.getNext();
+				}
+				else {
+					Candidato aux = new Candidato(first.getNome(),first.getEmail(),first.getCPF(),first.getCEP(),first.getSituacao());
+					bigger.addBack(aux);
+					first = first.getNext();
+				}
+				
 			}
 			
-			else{
-				OrdenaListaUtils aux = new OrdenaListaUtils();
-				ListaCandidato menor_igual_maior = aux.listaMenorIgualMaior(listaCandidatos, elementoPivo);	
-				return menor_igual_maior;
-			}			
-			
-		} catch (Exception e) {
-			System.out.println("Exceção não tratada [ListaCandidato.QuickSort]" + e.getStackTrace());
-			return null;
-		}
-		
-	}
-	
-	
-	private Candidato findPivo(ListaCandidato listaCandidatos, String pivo) {
-		/**
-		 *  retorna primeiro elemento da lista, ultimo ou então chama o metodo findPivo para encontrar o elemento central
-		 *  sendo essas as três opções de pivô - [inicio, centro, fim]
-		 *  
-		 */
-		try {
-			if (pivo.equals("inicio")) {
-				return listaCandidatos.getfirst();
+			if (less.isTrue()) {
+				if (less.getLength() > 1) {
+					less = quickSort(less);
+				}
 			}
-		
-			else if (pivo.equals("final")) {
-				return listaCandidatos.getLast();
-			}
-		
-			else {
-				return findPivo(listaCandidatos.getfirst(),(listaCandidatos.getLength()/2), 0);
-			}	
 			
-		} catch (Exception e) {
-			System.out.println("Exceção não tratada [findPivo 1]" + e.getStackTrace());
-			return null;
+			if (bigger.isTrue()) {
+				if (bigger.getLength() > 1) {
+					bigger = quickSort(bigger);
+				}
+			}
+			
+			return concatena(less, equal, bigger);			
+			
 		}
 	}
-	
-	
-	private Candidato findPivo(Candidato candidato, int pivo, int contador) {
-		try {			
-			if (pivo < 1) {
-				pivo = 0 ;
+	private ListaCandidato concatena(ListaCandidato menor,ListaCandidato igual,ListaCandidato maior) {
+		
+		ListaCandidato aux = new ListaCandidato();
+		Candidato aux2;
+		
+		if (menor.isTrue()) {
+			aux2 = menor.getfirst();
+			while (aux2 != null) {
+				aux.addBack(aux2);
+				aux2 = aux2.getNext();
 			}
-			
-			if (pivo == contador) {
-				return candidato;
-			}
-			
-			else {
-				return findPivo(candidato.next, pivo, contador++);				
-			}		
-			
-		} catch (Exception e) {
-			System.out.println("Exceção não tratada [findPivo 2]" + e.getStackTrace());
-			return null;
 		}
-	}
+		
+		aux2 = igual.getfirst();
+		while (aux2 != null) {
+			aux.addBack(aux2);
+			aux2 = aux2.getNext();
+		}
+		
+		if (maior.isTrue()) {
+			aux2 = maior.getfirst();
+			while (aux2 != null) {
+				aux.addBack(aux2);
+				aux2 = aux2.getNext();
+			}
+		}
+		
+		return aux;
+	}		
+
 	
 	public void mergeSort(ListaCandidato candidatos) {
 		int size = candidatos.getLength();
@@ -122,6 +123,7 @@ public class OrdenaLista {
 		mergeSort(arr2);
 		merge(arr1, arr2, candidatos);
 	}
+
 	
 	public void merge(ListaCandidato arr1, ListaCandidato arr2, ListaCandidato candidatos) {
 		Candidato current1 = arr1.removeFront();

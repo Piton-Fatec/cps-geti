@@ -204,4 +204,12 @@ public class ListaCandidato implements ListaInterface {
     public Candidato getLast() {
     	return this.head.getLast();
     }
+    
+    public boolean isTrue() {
+    	if (this.head != null) {
+    		return true;
+    	}
+    	else {return false;}
+    }
+    
 }
