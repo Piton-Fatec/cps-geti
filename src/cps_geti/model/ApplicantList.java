@@ -2,118 +2,121 @@ package cps_geti.model;
 
 class Head {
 	
-	private Candidato first = null;
-	private Candidato last = null;
+	private Applicant first = null;
+	private Applicant last = null;
 	public int elements = 0;
 	
-	public Candidato getFirst() {
+	public Applicant getFirst() {
 		return first;
 	}
-	public void setFirst(Candidato first) {
+	
+	public void setFirst(Applicant first) {
 		this.first = first;
 	}
-	public Candidato getLast() {
+	
+	public Applicant getLast() {
 		return last;
 	}
-	public void setLast(Candidato last) {
+	
+	public void setLast(Applicant last) {
 		this.last = last;
 	}
 }
 
-public class ListaCandidato implements ListaInterface {
+public class ApplicantList {
 
 	private Head head = new Head();
 	
-    public void addFront(Candidato candidato) {
+    public void addFront(Applicant Applicant) {
         try {
             if (this.head == null) {
             	this.head = new Head();
-                this.head.setFirst(candidato);
-                this.head.setLast(candidato);
+                this.head.setFirst(Applicant);
+                this.head.setLast(Applicant);
                 this.head.elements += 1;
                 return;
             }
 
-            candidato.setNext(this.head.getFirst());
-            this.head.getFirst().setPrevious(candidato);
-            this.head.setFirst(candidato);
+            Applicant.setNext(this.head.getFirst());
+            this.head.getFirst().setPrevious(Applicant);
+            this.head.setFirst(Applicant);
             this.head.elements += 1;
         } catch (NullPointerException e) {
             e.printStackTrace();
             System.err.println("This operation can not be executed.");
         }
     }
-
     
-    public void addBack(Candidato candidato) {
+    
+    public void addBack(Applicant Applicant) {
         try {
             if (this.head.elements == 0) {
-            	this.head.setFirst(candidato);
-                this.head.setLast(candidato);
+            	this.head.setFirst(Applicant);
+                this.head.setLast(Applicant);
                 this.head.elements += 1;
                 return;
             }
 
-            candidato.setPrevious(this.head.getLast());
-            this.head.getLast().setNext(candidato);
-            this.head.setLast(candidato);
+            Applicant.setPrevious(this.head.getLast());
+            this.head.getLast().setNext(Applicant);
+            this.head.setLast(Applicant);
             this.head.elements += 1;
         } catch (NullPointerException e) {
             e.printStackTrace();
             System.err.println("This operation can not be executed.");
         }
     }
-
     
-    public Candidato removeFront() {
-        Candidato candidatoRemovido = this.head.getFirst();
+    
+    public Applicant removeFront() {
+        Applicant ApplicantRemovido = this.head.getFirst();
         this.head.elements -= 1;
         
-        if (candidatoRemovido == null || this.head.elements <= 0) {
+        if (ApplicantRemovido == null || this.head.elements <= 0) {
         	this.head.setLast(null);
         	this.head.setFirst(null);
         	this.head.elements = 0;
-        	return candidatoRemovido;
+        	return ApplicantRemovido;
         }
         
-        this.head.setFirst(candidatoRemovido.getNext());
-        return candidatoRemovido;
+        this.head.setFirst(ApplicantRemovido.getNext());
+        return ApplicantRemovido;
     }
     
     
-    public Candidato removeBack() {
-        Candidato candidatoRemovido = this.head.getLast();
+    public Applicant removeBack() {
+        Applicant ApplicantRemovido = this.head.getLast();
         this.head.elements -= 1;
         
-        if (candidatoRemovido == null || this.head.elements <= 0) {
+        if (ApplicantRemovido == null || this.head.elements <= 0) {
         	this.head.setLast(null);
         	this.head.setFirst(null);
         	this.head.elements = 0;
-        	return candidatoRemovido;
+        	return ApplicantRemovido;
         }
         
         this.head.setLast(this.head.getLast().getPrevious()); 
-        return candidatoRemovido;
-    }
+        return ApplicantRemovido;
+    } 
     
     
-    public Candidato removeAnyPosition(int pos) {
-        Candidato candidatoRemovido = null;
+    public Applicant removeAnyPosition(int pos) {
+        Applicant ApplicantRemovido = null;
 
         try {
-            Candidato current = this.head.getFirst();
+            Applicant current = this.head.getFirst();
 
             if (pos == 0) {
-                candidatoRemovido = current;
+                ApplicantRemovido = current;
                 this.head.setFirst(current.getNext());
             } else {
                 current = getSomeElement(current, pos);
 
-                candidatoRemovido = current.getNext();
+                ApplicantRemovido = current.getNext();
 
-                if (candidatoRemovido.getNext() != null) {
-                    candidatoRemovido.getNext().setPrevious(current);
-                    current.setNext(candidatoRemovido.getNext());
+                if (ApplicantRemovido.getNext() != null) {
+                    ApplicantRemovido.getNext().setPrevious(current);
+                    current.setNext(ApplicantRemovido.getNext());
                 } else {
                     current.setNext(null);
                 }
@@ -124,11 +127,11 @@ public class ListaCandidato implements ListaInterface {
             System.out.println("This operation can not be executed. Empty list.");
         }
 
-        return candidatoRemovido;
+        return ApplicantRemovido;
     }
     
     
-    public Candidato getSomeElement(Candidato head, int pos) {
+    public Applicant getSomeElement(Applicant head, int pos) {
         if (pos <= 1) {
             return head;
         } else {
@@ -139,21 +142,19 @@ public class ListaCandidato implements ListaInterface {
     
     public Object[][] formatList() {
     	Object[][] data = new Object[this.head.elements][5];
-    	
-    	Candidato current = this.head.getFirst();
+    	Applicant current = this.head.getFirst();
     	
     	for (int i = 0; i < this.head.elements; i++) {
     		Object[] arr = {
-    				current.getNome(),
+    				current.getName(),
     				current.getEmail(),
     				current.getCPF(),
     				current.getCEP(),
-    				current.getSituacao()
+    				current.getStatus()
     				};
     		data[i] = arr;
     		current = current.getNext();
     	}
-    	
     	return data;
     }
     
@@ -166,8 +167,8 @@ public class ListaCandidato implements ListaInterface {
     }
     
     
-    public boolean checkUser(Candidato head, String cpf) {
-    	Candidato current = head;
+    public boolean checkUser(Applicant head, String cpf) {
+    	Applicant current = head;
     	while (current != null) {
     		if (current.getCPF().equals(cpf)) {
     			return true;
@@ -178,12 +179,12 @@ public class ListaCandidato implements ListaInterface {
     }
     
     
-    public Candidato getUser(String cpf) {
+    public Applicant getUser(String cpf) {
     	return returnUser(this.head.getFirst(), cpf);
     }
     
     
-    public Candidato returnUser(Candidato head, String cpf) {
+    public Applicant returnUser(Applicant head, String cpf) {
     	if (head.getCPF().equals(cpf)) {
     		return head;
     	} else if (head.getNext() == null) {
@@ -193,23 +194,23 @@ public class ListaCandidato implements ListaInterface {
         }
     }
     
+    
     public int getLength() {
     	return this.head.elements;
     }
     
-    public Candidato getfirst() {
+    
+    public Applicant getfirst() {
     	return this.head.getFirst();
     }
     
-    public Candidato getLast() {
+    
+    public Applicant getLast() {
     	return this.head.getLast();
     }
     
-    public boolean isTrue() {
-    	if (this.head != null) {
-    		return true;
-    	}
-    	else {return false;}
-    }
     
+    public boolean isTrue() {
+    	return this.head != null;
+    }   
 }

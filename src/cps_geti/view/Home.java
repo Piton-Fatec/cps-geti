@@ -65,7 +65,6 @@ public class Home extends JFrame {
 			}
 		});
 		
-		
 		contentPane.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
@@ -80,90 +79,88 @@ public class Home extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblImagem = new JLabel("");
-		lblImagem.setIcon(new ImageIcon(Home.class.getResource("/cps_geti/view/imgs/new-people.jpg")));
-		lblImagem.setBounds(-152, -214, 603, 1187);
-		panel.add(lblImagem);
+		JLabel lblImage = new JLabel("");
+		lblImage.setIcon(new ImageIcon(Home.class.getResource("/cps_geti/view/imgs/new-people.jpg")));
+		lblImage.setBounds(-152, -214, 603, 1187);
+		panel.add(lblImage);
 		
-		JLabel lblTitulo = new JLabel("Processo Seletivo -GETI");
-		lblTitulo.setForeground(new Color(47, 79, 79));
-		lblTitulo.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 18));
-		lblTitulo.setIcon(new ImageIcon(Home.class.getResource("/cps_geti/view/imgs/cps-nimage.jpg")));
-		lblTitulo.setBounds(519, 81, 411, 159);
-		contentPane.add(lblTitulo);
+		JLabel lblTitle = new JLabel("Processo Seletivo -GETI");
+		lblTitle.setForeground(new Color(47, 79, 79));
+		lblTitle.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 18));
+		lblTitle.setIcon(new ImageIcon(Home.class.getResource("/cps_geti/view/imgs/cps-nimage.jpg")));
+		lblTitle.setBounds(519, 81, 411, 159);
+		contentPane.add(lblTitle);
 		
-		JButton btnEntrar = new JButton("Acessar área do candidato");
-		btnEntrar.addMouseListener(new MouseAdapter() {
+		JButton btnLogin = new JButton("Acessar área do candidato");
+		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
 			}
 		});
 		
+		btnLogin.setForeground(Color.WHITE);
+		btnLogin.setBackground(new Color(102, 102, 204));
+		btnLogin.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
+		btnLogin.setBorder(new LineBorder(new Color(102, 102, 204)));
+		btnLogin.setBounds(608, 336, 268, 55);
+		contentPane.add(btnLogin);
 		
-		btnEntrar.setForeground(Color.WHITE);
-		btnEntrar.setBackground(new Color(102, 102, 204));
-		btnEntrar.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
-		btnEntrar.setBorder(new LineBorder(new Color(102, 102, 204)));
-		btnEntrar.setBounds(608, 336, 268, 55);
-		contentPane.add(btnEntrar);
-		
-		
-		JButton btnInscrioParaO = new JButton("Inscrição para o edital");
-		btnInscrioParaO.addMouseListener(new MouseAdapter() {
+		JButton btnApply = new JButton("Inscrição para o edital");
+		btnApply.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				TelaInscricao ti = new TelaInscricao();
-				ti.setUndecorated(true);
-				ti.setVisible(true);
+				ApplicantForm form = new ApplicantForm();
+				form.setUndecorated(true);
+				form.setVisible(true);
 			}
 		});
 		
+		btnApply.setForeground(Color.WHITE);
+		btnApply.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
+		btnApply.setBorder(new LineBorder(new Color(60, 179, 113), 5, true));
+		btnApply.setBackground(new Color(60, 179, 113));
+		btnApply.setBounds(608, 427, 268, 55);
+		contentPane.add(btnApply);
 		
-		btnInscrioParaO.setForeground(Color.WHITE);
-		btnInscrioParaO.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
-		btnInscrioParaO.setBorder(new LineBorder(new Color(60, 179, 113), 5, true));
-		btnInscrioParaO.setBackground(new Color(60, 179, 113));
-		btnInscrioParaO.setBounds(608, 427, 268, 55);
-		contentPane.add(btnInscrioParaO);
-		
-		JButton btnMembroCps = new JButton("Membro CPS");
-		btnMembroCps.addMouseListener(new MouseAdapter() {
+		JButton btnMemberLogin = new JButton("Membro CPS");
+		btnMemberLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				TelaLoginMembro tl = new TelaLoginMembro();
-				tl.setUndecorated(true);
-				tl.setVisible(true);
+				LoginMember loginMember = new LoginMember();
+				loginMember.setUndecorated(true);
+				loginMember.setVisible(true);
 			}
 		});
 		
-		btnMembroCps.setForeground(Color.WHITE);
-		btnMembroCps.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
-		btnMembroCps.setBorder(new LineBorder(new Color(95, 158, 160)));
-		btnMembroCps.setBackground(new Color(95, 158, 160));
-		btnMembroCps.setBounds(608, 517, 268, 55);
-		contentPane.add(btnMembroCps);
+		btnMemberLogin.setForeground(Color.WHITE);
+		btnMemberLogin.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 17));
+		btnMemberLogin.setBorder(new LineBorder(new Color(95, 158, 160)));
+		btnMemberLogin.setBackground(new Color(95, 158, 160));
+		btnMemberLogin.setBounds(608, 517, 268, 55);
+		contentPane.add(btnMemberLogin);
 		
 		
-		JLabel lbl_close = new JLabel("X");
-		lbl_close.addMouseListener(new MouseAdapter() {
+		JLabel lblClose = new JLabel("X");
+		lblClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
 		});
-		lbl_close.setForeground(new Color(178, 34, 34));
-		lbl_close.setFont(new Font("Open Sans", Font.BOLD, 23));
-		lbl_close.setBounds(994, 0, 30, 32);
-		contentPane.add(lbl_close);
 		
-		JLabel lblSejaBemvindoClique = new JLabel("Seja Bem-Vindo! Clique na opção desejada");
-		lblSejaBemvindoClique.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSejaBemvindoClique.setForeground(new Color(47, 79, 79));
-		lblSejaBemvindoClique.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 18));
-		lblSejaBemvindoClique.setBounds(519, 252, 411, 62);
-		contentPane.add(lblSejaBemvindoClique);
+		lblClose.setForeground(new Color(178, 34, 34));
+		lblClose.setFont(new Font("Open Sans", Font.BOLD, 23));
+		lblClose.setBounds(994, 0, 30, 32);
+		contentPane.add(lblClose);
+		
+		JLabel lblWelcome = new JLabel("Seja Bem-Vindo! Clique na opção desejada");
+		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcome.setForeground(new Color(47, 79, 79));
+		lblWelcome.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 18));
+		lblWelcome.setBounds(519, 252, 411, 62);
+		contentPane.add(lblWelcome);
 	}
 }

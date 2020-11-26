@@ -1,8 +1,8 @@
 package cps_geti.model;
 
-public class ListaMembros implements ListaInterface {
+public class MemberList {
 
-    private MembroCPS head = null;
+    private CPSMember head = null;
 
 
     public boolean isEmpty() {
@@ -10,14 +10,14 @@ public class ListaMembros implements ListaInterface {
     }
 
 
-    public void addFront(MembroCPS membro) {
+    public void addFront(CPSMember member) {
         try {
             if (this.head == null) {
-                this.head = membro;
+                this.head = member;
                 return;
             }
-            membro.setNext(this.head);
-            this.head = membro;
+            member.setNext(this.head);
+            this.head = member;
         } catch (NullPointerException e) {
             e.printStackTrace();
             System.err.println("This operation can not be executed.");
@@ -25,15 +25,15 @@ public class ListaMembros implements ListaInterface {
     }
 
 
-    public void addBack(MembroCPS membro) {
+    public void addBack(CPSMember member) {
         try {
             if (this.head == null) {
-                this.head = membro;
+                this.head = member;
                 return;
             }
 
-            MembroCPS lastCourse = getLastElement(this.head);
-            lastCourse.setNext(membro);
+            CPSMember lastMember = getLastElement(this.head);
+            lastMember.setNext(member);
 
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class ListaMembros implements ListaInterface {
     }
 
 
-    public MembroCPS getLastElement(MembroCPS head) {
+    public CPSMember getLastElement(CPSMember head) {
         if (head.getNext() == null) {
             return head;
         } else {
@@ -51,20 +51,20 @@ public class ListaMembros implements ListaInterface {
     }
 
 
-    public void addAnyPosition(MembroCPS membro, int pos) {
+    public void addAnyPosition(CPSMember member, int pos) {
         try {
             if (this.head == null) {
-                this.head = membro;
+                this.head = member;
                 return;
             } else if (pos == 0) {
-                addFront(membro);
+                addFront(member);
                 return;
             }
 
-            MembroCPS current = getSomeElement(this.head, pos);
+            CPSMember current = getSomeElement(this.head, pos);
 
-            membro.setNext(current.getNext());
-            current.setNext(membro);
+            member.setNext(current.getNext());
+            current.setNext(member);
 
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -73,7 +73,7 @@ public class ListaMembros implements ListaInterface {
     }
 
 
-    public MembroCPS getSomeElement(MembroCPS head, int pos) {
+    public CPSMember getSomeElement(CPSMember head, int pos) {
         if (pos <= 1) {
             return head;
         } else {
@@ -82,46 +82,41 @@ public class ListaMembros implements ListaInterface {
     }
 
 
-
-    public MembroCPS removeFront() {
-    	MembroCPS membroRemovido = null;
+    public CPSMember removeFront() {
+    	CPSMember removedMember = null;
 
         try {
-            membroRemovido = this.head;
+        	removedMember = this.head;
             this.head = this.head.getNext();
         } catch (NullPointerException e) {
             return null;
         }
-        return membroRemovido;
+        return removedMember;
     }
 
 
-    public MembroCPS removeBack() {
-    	MembroCPS membroRemovido = null;
+    public CPSMember removeBack() {
+    	CPSMember removedMember = null;
 
         try {
-        	MembroCPS current = this.head;
+        	CPSMember current = this.head;
 
             if (current.getNext() == null) {
-            	membroRemovido = current;
+            	removedMember = current;
                 this.head = null;
             } else {
-
                 current = getLastButOneElement(current);
-
-                membroRemovido = current.getNext();
+                removedMember = current.getNext();
                 current.setNext(null);
             }
-
         } catch (NullPointerException e) {
         	return null;
         }
-
-        return membroRemovido;
+        return removedMember;
     }
 
 
-    public MembroCPS getLastButOneElement(MembroCPS head) {
+    public CPSMember getLastButOneElement(CPSMember head) {
         if (head.getNext().getNext() == null) {
             return head;
         } else {
@@ -130,31 +125,27 @@ public class ListaMembros implements ListaInterface {
     }
 
 
-
-    public MembroCPS removeAnyPosition(int pos) {
-    	MembroCPS membroRemovido = null;
+    public CPSMember removeAnyPosition(int pos) {
+    	CPSMember removedMember = null;
 
         try {
-        	MembroCPS current = this.head;
+        	CPSMember current = this.head;
 
             if (pos == 0) {
-                membroRemovido = current;
+            	removedMember = current;
                 this.head = current.getNext();
             } else {
-
                 current = getSomeElement(current, pos);
-
-                membroRemovido = current.getNext();
+                removedMember = current.getNext();
                 current.setNext(current.getNext().getNext());
             }
-
         } catch (NullPointerException e) {
             System.out.println("This operation can not be executed. Empty list.");
         }
-        return membroRemovido;
+        return removedMember;
     }
-    
-    
+     
+ 
     public boolean contains(String user) {
     	if (this.head == null) {
     		return false;
@@ -163,7 +154,7 @@ public class ListaMembros implements ListaInterface {
     }
     
     
-    public boolean checkUser(MembroCPS head, String user) {
+    public boolean checkUser(CPSMember head, String user) {
     	if (head.getNome().equals(user)) {
     		return true;
     	} else if (head.getNext() == null) {
@@ -174,12 +165,12 @@ public class ListaMembros implements ListaInterface {
     }
     
     
-    public MembroCPS getUser(String user) {
+    public CPSMember getUser(String user) {
     	return returnUser(this.head, user);
     }
     
     
-    public MembroCPS returnUser(MembroCPS head, String user) {
+    public CPSMember returnUser(CPSMember head, String user) {
     	if (head.getNome().equals(user)) {
     		return head;
     	} else if (head.getNext() == null) {
