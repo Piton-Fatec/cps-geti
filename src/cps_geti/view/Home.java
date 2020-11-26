@@ -95,7 +95,10 @@ public class Home extends JFrame {
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				LoginApplicant login = new LoginApplicant();
+				login.setUndecorated(true);
+				login.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -110,10 +113,10 @@ public class Home extends JFrame {
 		btnApply.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
 				ApplicantForm form = new ApplicantForm();
 				form.setUndecorated(true);
 				form.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -128,10 +131,10 @@ public class Home extends JFrame {
 		btnMemberLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
 				LoginMember loginMember = new LoginMember();
 				loginMember.setUndecorated(true);
 				loginMember.setVisible(true);
+				dispose();
 			}
 		});
 		
