@@ -1,8 +1,6 @@
-Buffalo,email@email.com,123,432,Inscrição deferida
-Bill Kill,email@email.com,123,432,Inscrição deferida
-Mussum,email@email.com,123,432,Inscrição deferida
-Tio Patinhas,email@email.com,123,432,Inscrição deferida
-Brinquedo,email@email.com,123,432,Inscrição deferida
-Manio,email@email.com,123,432,Inscrição deferida
-Bico de leão,email@email.com,123,432,Inscrição deferida
-Maoq,email@email.com,123,432,Inscrição deferida
+Bico de leão,email@email.com,369,432,Inscrição deferida
+Bill Kill,email@email.com,1,432,Inscrição deferida
+Buffalo,email@email.com,5,432,Inscrição deferida
+Manio,email@email.com,21,432,Inscrição deferida
+Mussum,email@email.com,45,432,Inscrição deferida
+Tio Patinhas,email@email.com,2,432,Inscrição deferida
