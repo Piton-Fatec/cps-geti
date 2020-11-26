@@ -14,6 +14,7 @@ import cps_geti.model.Applicant;
 public class ApplicantControllerDAO {
 	
 	private static String FILE = "bd/applicants.txt";
+	private ApplicantList memApplicantList;
 	
 	public static ApplicantList getApplicantList()  {
 		ApplicantList applicants = new ApplicantList();
@@ -85,32 +86,29 @@ public class ApplicantControllerDAO {
 	public Object[][] getSortedFormattedList() {
 		ApplicantList applicantLists = getApplicantList();
 		Sorting sorting = new Sorting();
-		applicantLists = sorting.quickSort(applicantLists);
+		this.memApplicantList = sorting.quickSort(applicantLists);
 		
-		return applicantLists.formatList();
+		return this.memApplicantList.formatList();
 	}
 	
 	
 	public void deleteApplicant(int[] pos) {
-		ApplicantList applicantLists = getApplicantList();
-		
 		for (int i : pos) {
-			applicantLists.removeAnyPosition(i);
+			this.memApplicantList.removeAnyPosition(i);
 		}
-		updateBD(applicantLists);
+		updateBD(this.memApplicantList);
 	}
 	
 	
 	public void confirmApplicants(int[] pos) {
-		ApplicantList applicantLists = getApplicantList();
 		Applicant applicant;
 		for (int i : pos) {
-			applicant = applicantLists.removeAnyPosition(i);
+			applicant = this.memApplicantList.removeAnyPosition(i);
 			applicant.setStatus("Inscrição deferida");
 			applicant.setNext(null);
-			applicantLists.addBack(applicant);
+			this.memApplicantList.addBack(applicant);
 		}
-		updateBD(applicantLists);
+		updateBD(this.memApplicantList);
 	}
 	
 	
