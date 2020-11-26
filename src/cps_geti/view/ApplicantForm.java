@@ -123,7 +123,7 @@ public class ApplicantForm extends JFrame {
 		cepField = new JTextField();
 		cepField.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 13));
 		cepField.setColumns(10);
-		cepField.setBounds(761, 434, 185, 42);
+		cepField.setBounds(747, 434, 185, 42);
 		contentPane.add(cepField);
 		
 		cpfField = new JTextField();
@@ -135,7 +135,7 @@ public class ApplicantForm extends JFrame {
 		JLabel lblCep = new JLabel("CEP");
 		lblCep.setForeground(new Color(47, 79, 79));
 		lblCep.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
-		lblCep.setBounds(761, 403, 70, 15);
+		lblCep.setBounds(747, 403, 70, 15);
 		contentPane.add(lblCep);
 		
 		JLabel lblCpf = new JLabel("CPF");
@@ -169,10 +169,10 @@ public class ApplicantForm extends JFrame {
 		JButton btnBack = new JButton("Voltar");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
 				Home home = new Home();
 				home.setUndecorated(true);
 				home.setVisible(true);
+				dispose();
 			}
 		});
 		

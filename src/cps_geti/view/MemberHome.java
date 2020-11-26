@@ -37,7 +37,7 @@ public class MemberHome extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MemberHome(String user) {
+	public MemberHome(String user, int sortingOption) {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 100, 1024, 768);
@@ -67,14 +67,14 @@ public class MemberHome extends JFrame {
 		lblImage.setForeground(new Color(47, 79, 79));
 		lblImage.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 15));
 		lblImage.setIcon(new ImageIcon(MemberHome.class.getResource("/cps_geti/view/imgs/cps-nimage.jpg")));
-		lblImage.setBounds(22, 37, 196, 92);
+		lblImage.setBounds(22, 38, 196, 92);
 		contentPane.add(lblImage);
 
 		JLabel lblTitle = new JLabel("Candidatos Inscritos");
 		lblTitle.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTitle.setForeground(new Color(47, 79, 79));
 		lblTitle.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 25));
-		lblTitle.setBounds(221, 61, 423, 41);
+		lblTitle.setBounds(219, 54, 423, 41);
 		contentPane.add(lblTitle);
 
 		JLabel lblClose = new JLabel("X");
@@ -93,8 +93,12 @@ public class MemberHome extends JFrame {
 		String[] columnNames = { "Nome", "e-mail", "CPF", "CEP", "Situação" };
 		
 		ApplicantControllerDAO dao = new ApplicantControllerDAO();
-		Object[][] data = dao.getSortedFormattedList();
-
+		Object[][] data = dao.getSortedFormattedListName();
+		
+		if (sortingOption == 1) {
+			data = dao.getSortedFormattedListCPF();
+		}
+		
 		table = new JTable(data, columnNames);
 		table.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 14));
 		table.setBackground(new Color(255,255,255));
@@ -108,8 +112,8 @@ public class MemberHome extends JFrame {
 		head.setFont(new Font("Noto Sans CJK JP", Font.PLAIN, 14));
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setSize(990, 428);
-		scrollPane.setLocation(22, 168);
+		scrollPane.setSize(990, 421);
+		scrollPane.setLocation(22, 175);
 		scrollPane.setBorder(new LineBorder(new Color(170, 170, 170)));
 
 		table.setFillsViewportHeight(true);
@@ -117,7 +121,7 @@ public class MemberHome extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(644, 38, 346, 103);
+		panel.setBounds(666, 39, 346, 103);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -126,10 +130,10 @@ public class MemberHome extends JFrame {
 		panel.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
 				Home ti = new Home();
 				ti.setUndecorated(true);
 				ti.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -154,10 +158,10 @@ public class MemberHome extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int[] rows = table.getSelectedRows();
 				dao.confirmApplicants(rows);
-				dispose();
-				MemberHome memberHome = new MemberHome(user);
+				MemberHome memberHome = new MemberHome(user, 0);
 				memberHome.setUndecorated(true);
 				memberHome.setVisible(true);
+				dispose();
 			}
 		});
 
@@ -173,10 +177,10 @@ public class MemberHome extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int[] rows = table.getSelectedRows();
 				dao.deleteApplicant(rows);
-				dispose();
-				MemberHome memberHome = new MemberHome(user);
+				MemberHome memberHome = new MemberHome(user, 0);
 				memberHome.setUndecorated(true);
 				memberHome.setVisible(true);
+				dispose();
 			}
 		});
 
@@ -186,5 +190,45 @@ public class MemberHome extends JFrame {
 		btnDelete.setBackground(new Color(204, 102, 0));
 		btnDelete.setBounds(598, 639, 184, 61);
 		contentPane.add(btnDelete);
+		
+		JButton btnSortName = new JButton("Nome");
+		btnSortName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MemberHome memberHome = new MemberHome(user, 0);
+				memberHome.setUndecorated(true);
+				memberHome.setVisible(true);
+				dispose();
+			}
+		});
+		btnSortName.setForeground(Color.WHITE);
+		btnSortName.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 12));
+		btnSortName.setBorder(new LineBorder(new Color(128, 128, 128)));
+		btnSortName.setBackground(new Color(102, 102, 102));
+		btnSortName.setBounds(122, 147, 83, 25);
+		contentPane.add(btnSortName);
+		
+		JLabel lblOrdenao = new JLabel("Ordenar por:");
+		lblOrdenao.setHorizontalAlignment(SwingConstants.LEFT);
+		lblOrdenao.setForeground(new Color(47, 79, 79));
+		lblOrdenao.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 13));
+		lblOrdenao.setBounds(32, 142, 90, 32);
+		contentPane.add(lblOrdenao);
+		
+		JButton btnSortCPF = new JButton("CPF");
+		btnSortCPF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MemberHome memberHome = new MemberHome(user, 1);
+				memberHome.setUndecorated(true);
+				memberHome.setVisible(true);
+				dispose();
+			}
+		});		
+		
+		btnSortCPF.setForeground(Color.WHITE);
+		btnSortCPF.setFont(new Font("Noto Sans CJK JP", Font.BOLD, 12));
+		btnSortCPF.setBorder(new LineBorder(new Color(128, 128, 128)));
+		btnSortCPF.setBackground(new Color(102, 102, 102));
+		btnSortCPF.setBounds(213, 147, 83, 25);
+		contentPane.add(btnSortCPF);
 	}
 }

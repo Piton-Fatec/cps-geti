@@ -90,11 +90,10 @@ public class NewApplicantAuthentication extends JFrame {
 						msg = "Inscrito com sucesso!";
 					}
 				}
-				
-				dispose();
 				Dialogue dialogue = new Dialogue(msg);
 				dialogue.setUndecorated(true);
 				dialogue.setVisible(true);
+				dispose();
 			}
 		});
 		btnConfirm.setBackground(new Color(192, 192, 192));

@@ -124,7 +124,8 @@ public class Sorting {
 		Applicant current2 = arr2.removeFront();
 		
 		while (current1 != null && current2 != null) {
-			if (current1.getCPF().compareTo(current2.getCPF()) <= 0) {
+			if (Integer.valueOf(current1.getCPF())
+					.compareTo(Integer.valueOf(current2.getCPF())) <= 0) {
 				applicants.addBack(current1);
 				current1 = arr1.removeFront();
 			} else {

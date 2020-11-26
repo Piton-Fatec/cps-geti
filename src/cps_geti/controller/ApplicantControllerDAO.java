@@ -44,12 +44,26 @@ public class ApplicantControllerDAO {
 	}
 
 	
+	public Applicant getApplicant(String cpf) {
+		ApplicantList applicantList = getApplicantList();
+		
+		if (applicantList.contains(cpf)) {
+			Applicant applicant = applicantList.getUser(cpf);
+			if (applicant.getCPF().equals(String.valueOf(cpf))) {
+				return applicant;
+			}
+		}
+		return null;
+	}
+	
+	
 	public boolean isValid(String name, String cpf) {
 		ApplicantList applicantList = getApplicantList();
 		
-		if (applicantList.contains(name)) {
-			Applicant applicant = applicantList.getUser(name);
-			if (applicant.getCPF().equals(String.valueOf(cpf))) {
+		if (applicantList.contains(cpf)) {
+			Applicant applicant = applicantList.getUser(cpf);
+			if (applicant.getCPF().equals(String.valueOf(cpf))
+					&& applicant.getName().equals(name)) {
 				return true;
 			}
 		}
@@ -83,10 +97,20 @@ public class ApplicantControllerDAO {
 	}
 	
 	
-	public Object[][] getSortedFormattedList() {
+	public Object[][] getSortedFormattedListName() {
 		ApplicantList applicantLists = getApplicantList();
 		Sorting sorting = new Sorting();
 		this.memApplicantList = sorting.quickSort(applicantLists);
+		
+		return this.memApplicantList.formatList();
+	}
+	
+	
+	public Object[][] getSortedFormattedListCPF() {
+		ApplicantList applicantLists = getApplicantList();
+		Sorting sorting = new Sorting();
+		sorting.mergeSort(applicantLists);
+		this.memApplicantList = applicantLists;
 		
 		return this.memApplicantList.formatList();
 	}
