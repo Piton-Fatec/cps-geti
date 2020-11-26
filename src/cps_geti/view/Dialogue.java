@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 import java.awt.Button;
 import javax.swing.UIManager;
 
-public class Dialogo extends JFrame {
+public class Dialogue extends JFrame {
 
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class Dialogo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Dialogo(String msg) {
+	public Dialogue(String msg) {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(650, 300, 450, 300);
